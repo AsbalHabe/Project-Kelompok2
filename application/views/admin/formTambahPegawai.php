@@ -54,7 +54,7 @@
                     <input type="file" name="foto" class="form-control">
                 </div>
 
-                <button type="submit" class="btn btn-sm btn-primary">Simpan</button>
+                <button type="submit" class="btn btn-sm btn-primary">Simpan data</button>
 
             </form>
         </div>
