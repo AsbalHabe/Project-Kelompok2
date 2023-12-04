@@ -22,12 +22,12 @@ class dataPegawai extends CI_Controller{
        $data['title'] = "Tambah Data Pegawai";
         
        // Mengambil data jabatan dari model
-       $data['pegawai'] = $this->PenggajianModel->get_data('data_pegawai')->result();
+       $data['jabatan'] = $this->PenggajianModel->get_data('data_jabatan')->result();
        
        // Memuat tampilan dengan template
        $this->load->view('template_admin/header_admin', $data);
        $this->load->view('template_admin/sidebar_admin');
-       $this->load->view('admin/dataPegawai', $data);
+       $this->load->view('admin/formTambahPegawai', $data);
        $this->load->view('template_admin/footer_admin');
     }
 }
