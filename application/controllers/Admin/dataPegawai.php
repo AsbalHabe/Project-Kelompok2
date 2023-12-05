@@ -36,6 +36,7 @@ class dataPegawai extends CI_Controller{
         $this->_rules();
 
         if($this->form_validation->run() == FALSE){
+            $this->tambahData();
         }else{
             $nik                        = $this->input->post('nik');
             $nama_pegawai               = $this->input->post('nama_pegawai');
