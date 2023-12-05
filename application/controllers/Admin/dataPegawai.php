@@ -45,8 +45,8 @@ class dataPegawai extends CI_Controller{
             $status                     = $this->input->post('status');
             $foto                      = $_FILES['foto'] ['name'];
             if($foto=''){}else{
-                $config ['upload_path']   ='.assets/foto'
-                $config['allowed_types']  ='jpg|png|jpeg|gif';
+                $config ['upload_path']   ='.assets/foto';
+                $config ['allowed_types']  ='jpg|png|jpeg|gif';
                 $this->load->library('upload',$config);
                 if(!$this->upload->do_upload('photo')){
                     echo "Foto Gagal di Upload!";
@@ -74,5 +74,15 @@ class dataPegawai extends CI_Controller{
                 </div>');
             redirect('admin/dataPegawai');
         }
+    }
+
+    public function _rules()
+    {
+        $this->form_validation->set_rules('nik', 'NIK', 'required');
+        $this->form_validation->set_rules('nama_pegawai', 'Nama Pegawai', 'required');
+        $this->form_validation->set_rules('jenis_kelamin', 'Jenis Kelamin', 'required');
+        $this->form_validation->set_rules('jabatan', 'Jabatan', 'required');
+        $this->form_validation->set_rules('tanggal_masuk', 'Tanggal Masuk', 'required');
+        $this->form_validation->set_rules('status', 'Status', 'required');
     }
 }

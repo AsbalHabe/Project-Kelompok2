@@ -14,11 +14,13 @@
                 <div class="form-group">
                     <label>NIK</label>
                     <input type="number" name="nik" class="form-control">
+                    <?php echo form_error('nik','<div class="text-small text-danger"></div>') ?>
                 </div>
 
                 <div class="form-group">
                     <label>Nama Pegawai</label>
                     <input type="text" name="nama_pegawai" class="form-control">
+                    <?php echo form_error('nama_pegawai','<div class="text-small text-danger"></div>') ?>
                 </div>
 
                 <div class="form-group">
@@ -28,6 +30,7 @@
                         <option value="Laki-laki">Laki-laki</option>
                         <option value="Perempuan">Perempuan</option>
                     </select>
+                    <?php echo form_error('jenis_kelamin','<div class="text-small text-danger"></div>') ?>
                 </div>
 
                 <div class="form-group">
@@ -38,11 +41,13 @@
                             <option value="<?php echo $j->nama_jabatan ?>"><?php echo $j->nama_jabatan ?></option>
                         <?php endforeach; ?>
                     </select>
+                    <?php echo form_error('jabatan','<div class="text-small text-danger"></div>') ?>
                 </div>
 
                 <div class="form-group">
                     <label>Tanggal Masuk</label>
                     <input type="date" name="tanggal_masuk" class="form-control">
+                    <?php echo form_error('tanggal_masuk','<div class="text-small text-danger"></div>') ?>
                 </div>
 
                 <div class="form-group">
@@ -52,6 +57,7 @@
                         <option value="Pegawai Tetap">Pegawai Tetap</option>
                         <option value="Pegawai Tidak Tetap">Pegawai Tidak Tetap</option>
                     </select>
+                    <?php echo form_error('status','<div class="text-small text-danger"></div>') ?>
                 </div>
 
                 <div class="form-group">
