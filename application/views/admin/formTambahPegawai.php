@@ -41,6 +41,11 @@
                 </div>
 
                 <div class="form-group">
+                    <label>Tanggal Masuk</label>
+                    <input type="date" name="tanggal_masuk" class="form-control">
+                </div>
+
+                <div class="form-group">
                     <label>Status</label>
                     <select name="status" class="form-control">
                         <option>---Pilih Status---</option>
