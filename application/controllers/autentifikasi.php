@@ -7,7 +7,7 @@ class Autentifikasi extends CI_Controller
     { 
         //jika statusnya sudah login, maka tidak bisa mengakses halaman login alias dikembalikan ke tampilan user 
         if($this->session->userdata('email')){ 
-            redirect('user'); 
+            redirect('autentifikasi'); 
         }
         $this->form_validation->set_rules('email', 'Alamat Email','required|trim|valid_email', [ 
                     'required' => 'Email Harus diisi!!', 
@@ -20,9 +20,7 @@ class Autentifikasi extends CI_Controller
                     $data['judul'] = 'Login'; 
                     $data['user'] = ''; 
                     //kata 'login' merupakan nilai dari variabel judul dalam array $data dikirimkan ke view aute_header 
-                    $this->load->view('templates/aute_header', $data); 
                     $this->load->view('autentifikasi/login'); 
-                    $this->load->view('templates/aute_footer'); 
                 } else { 
                     $this->_login(); 
                 } 
