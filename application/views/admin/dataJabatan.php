@@ -3,7 +3,7 @@
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800"><?php echo $title; ?></h1>
+        <h1 class="h3 mb-0 text-gray"><?php echo $title; ?></h1>
     </div>
     <a class="btn btn-sm btn-success mb-3 " href="<?php echo base_url('admin/dataJabatan/tambahData' ) ?>"><i class="fas fa-plus"></i>Tambah Data</a>
 

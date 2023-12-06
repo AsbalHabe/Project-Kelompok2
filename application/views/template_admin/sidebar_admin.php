@@ -4,12 +4,12 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-dark sidebar sidebar-dark accordion" id="accordionSidebar">
+        <ul class="navbar-nav bg-warning sidebar sidebar-success accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
                 <div class="sidebar-brand-icon ">
-                    <i class="fas fa-fw fa-cogs"></i>
+                    <i class="fas fa-hospital"></i>
                 </div>
                 <div class="sidebar-brand-text mx-3">APP PENGGAJIAN</div>
             </a>
@@ -98,7 +98,10 @@
                     </button>
 
                     <!-- Topbar Search -->
-                    <h4 class="font-weight-bold">PT. INDONESIA JAYA</h4>
+                    <h4 class="font-weight-bold">
+                        <i class="fas fa-hospital"></i> Medcial Online
+                    </h4>
+
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
