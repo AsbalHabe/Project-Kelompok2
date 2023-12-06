@@ -1,77 +1,40 @@
-<?php 
- 
-class Autentifikasi extends CI_Controller 
-{ 
- 
-    public function index() 
-    { 
-        //jika statusnya sudah login, maka tidak bisa mengakses halaman login alias dikembalikan ke tampilan user 
-        if($this->session->userdata('email')){ 
-            redirect('autentifikasi'); 
+<?php
+class Autentifikasi extends CI_Controller
+{
+    public function __construct() {
+        parent::__construct();
+        $this->load->database('penggajian'); // Load the database library
+        $this->load->library('login.php'); // Load the session library
+    }
+
+    public function index() {
+        if ($this->session->userdata('log')) {
+            redirect('admin/dashboard'); // Redirect to admin dashboard if already logged in
         }
-        $this->form_validation->set_rules('email', 'Alamat Email','required|trim|valid_email', [ 
-                    'required' => 'Email Harus diisi!!', 
-                    'valid_email' => 'Email Tidak Benar!!' 
-                ]); 
-                $this->form_validation->set_rules('password', 'Password', 'required|trim', [ 
-                    'required' => 'Password Harus diisi' 
-                ]); 
-                if ($this->form_validation->run() == false) { 
-                    $data['judul'] = 'Login'; 
-                    $data['user'] = ''; 
-                    //kata 'login' merupakan nilai dari variabel judul dalam array $data dikirimkan ke view aute_header 
-                    $this->load->view('autentifikasi/login'); 
-                } else { 
-                    $this->_login(); 
-                } 
-            } 
-         
-        private function _login() 
-            { 
-                $email = htmlspecialchars($this->input->post('email', true)); 
-                $password = $this->input->post('password', true); 
-                $user = $this->ModelUser->cekData(['email' => $email])->row_array(); 
-         
-                //jika usernya ada 
-                if ($user) { 
-                    //jika user sudah aktif 
-                    if ($user['is_active'] == 1) { 
-                        //cek password 
-                        if (password_verify($password, $user['password'])) { 
-                            $data = [ 
-                                'email' => $user['email'], 
-                                'role_id' => $user['role_id'] 
-                            ]; 
-                            $this->session->set_userdata($data); 
- 
-                            if ($user['role_id'] == 1) { 
-                                redirect('admin'); 
-                            } else { 
-                                if ($user['image'] == 'default.jpg') { 
-                                    $this->session->set_flashdata('pesan', 
-        '<div class="alert alert-info alert-message" role="alert">Silahkan 
-        Ubah Profile Anda untuk Ubah Photo Profil</div>'); 
-                                } 
-                                redirect('user'); 
-                            } 
-                        } else { 
-                            $this->session->set_flashdata('pesan', '<div 
-        class="alert alert-danger alert-message" role="alert">Password 
-        salah!!</div>'); 
-                            redirect('autentifikasi'); 
-                        } 
-                    } else { 
-                        $this->session->set_flashdata('pesan', '<div 
-        class="alert alert-danger alert-message" role="alert">User belum 
-        diaktifasi!!</div>'); 
-                        redirect('autentifikasi'); 
-                    } 
-                } else { 
-                    $this->session->set_flashdata('pesan', '<div 
-        class="alert alert-danger alert-message" role="alert">Email tidak 
-        terdaftar!!</div>'); 
-                    redirect('autentifikasi'); 
-                } 
-            } 
-         
-        } 
+
+        $this->load->view('login.php');
+    }
+
+    public function login() {
+        $user = $this->input->post('username');
+        $pass = $this->input->post('password');
+
+        $query = $this->db->get_where('login', array('username' => $user));
+        $cariuser = $query->row_array();
+
+        if ($cariuser && password_verify($pass, $cariuser['password'])) {
+            $this->session->set_userdata('userid', $cariuser['id']);
+            $this->session->set_userdata('username', $cariuser['username']);
+            $this->session->set_userdata('log', 'login.php');
+
+            redirect('admin/dashboard'); // Redirect to admin dashboard after successful login
+        } else {
+            echo '<script>alert("Data yang anda masukan salah !!");history.go(-1);</script>';
+        }
+    }
+
+    public function logout() {
+        $this->session->sess_destroy(); // Destroy the session
+        redirect('autentifikasi'); // Redirect to the login page after logout
+    }
+}
