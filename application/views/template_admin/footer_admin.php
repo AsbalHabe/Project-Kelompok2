@@ -2,7 +2,7 @@
 <footer class="sticky-footer bg-white fixed-bottom">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; PT INDONESIA JAYA 2023</span>
+                        <span>Copyright &copy; PT MECON 2023</span>
                     </div>
                 </div>
             </footer>
