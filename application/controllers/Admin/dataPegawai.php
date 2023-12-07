@@ -77,6 +77,18 @@ class dataPegawai extends CI_Controller{
         }
     }
 
+    public function updateData($id){
+        $where = array('id_pegawai => $id');
+        $data['title']= 'Update Data Pegawai';
+        $data['jabatan'] = $this->PenggajianModel->get_data('data_jabatan')->result();
+        $data['pegawai'] = $this->db->query("SELECT * FROM data_pegawai WHERE id_pegawai ='$id'")->result();
+       $this->load->view('template_admin/header_admin', $data);
+       $this->load->view('template_admin/sidebar_admin');
+       $this->load->view('admin/formUpdatePegawai', $data);
+       $this->load->view('template_admin/footer_admin');
+
+    }
+
     public function _rules()
     {
         $this->form_validation->set_rules('nik', 'NIK', 'required');
