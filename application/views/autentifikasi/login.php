@@ -1,32 +1,3 @@
-<?php
-session_start();
-include_once 'controllers/autentifikasi.php';
-if (!isset($_SESSION['log'])){  
-} else {
-  header ('location:Admin/dashboard.php');
-}
-
-if (isset($_POST['login'])){
-  $user = mysqli_real_escape_string($koneksi, $_POST['username']);
-  $pass = mysqli_real_escape_string($koneksi, $_POST['password']);
-  $queryuser = mysqli_query($koneksi, "SELECT * FROM login where username='$user'");
-  $cariuser = mysqli_fetch_assoc($queryuser);
-  if (password_verify($pass, $cariuser['password'])) {
-    $_SESSION['userid'] = $cariuser['id'];
-    $_SESSION['username'] = $cariuser['username'];
-    $_SESSION['log'] = 'login';
-
-    if($cariuser){
-      echo '<script>alert("Anda Berhasil Login Sebagai'.$cariuser['username'].'");windows.location="Admin/dashboard.php"</script>';
-    } else {
-      echo '<script>alert("Data yang anda masukan salah !!");history.go(-1);</script>';
-    }
-  } else {
-    echo '<script>alert("Data yang anda masukan salah !!");history.go(-1);</script>';
-  }
-};
-?>
-
 <!DOCTYPE html>
 <html lang="en" class="light-style customizer-hide" dir="ltr" data-theme="theme-default" data-assets-path="assets/" data-template="vertical-menu-template-free">
 
