@@ -15,22 +15,21 @@
 
                 <div class="form-group">
                     <label>NIK</label>
-                    <input type="hidden" name="id_pegawaai" class="form-control" value="<?php echo $p->nik ?>">
-                    <input type="number" name="nik" class="form-control">
+                    <input type="hidden" name="id_pegawai" class="form-control" value="<?php echo $p->nik ?>">
+                    <input type="number" name="nik" class="form-control" value="<?php echo $p->nik ?>">
                     <?php echo form_error('nik', '<div class="text-small text-danger"></div>') ?>
                 </div>
 
                 <div class="form-group">
                     <label>Nama Pegawai</label>
-                    <input type="hidden" name="id_pegawai" class="form-control" value="<?php echo $p->nama_pegawi ?>">
-                    <input type="text" name="nama_pegawai" class="form-control">
+                    <input type="text" name="nama_pegawai" class="form-control" value="<?php echo $p->nama_pegawai ?>">
                     <?php echo form_error('nama_pegawai', '<div class="text-small text-danger"></div>') ?>
                 </div>
 
                 <div class="form-group">
                     <label>Jenis Kelamin</label>
                     <select name="jenis_kelamin" class="form-control">
-                        <option value="<?php echo $P->jenis_kelamin ?>"><?php echo $p->jenis_kelamin ?></option>
+                        <option value="<?php echo $p->jenis_kelamin ?>"><?php echo $p->jenis_kelamin ?></option>
                         <option value="Laki-laki">Laki-laki</option>
                         <option value="Perempuan">Perempuan</option>
                     </select>
