@@ -42,7 +42,7 @@
                     </select>
                 </div>
 
-                <button type="submit" class="btn btn-primary mb-2 ml-auto"><i class="far fa-eye-slash"></i> Tampilkan Data</button>
+                <button type="submit" class="btn btn-primary mb-2 ml-auto"><i class="far fa-eye"></i> Tampilkan Data</button>
                 <a href="" class="btn btn-success mb-2 ml-3"><i class="fas fa-plus">Input Kehadiran</i></a>
             </form>
 
