@@ -27,7 +27,6 @@
             </div>
         </div>
         
-        
 
         <!-- Earnings (Monthly) Card Example (Data Admin) -->
         <div class="col-xl-3 col-md-6 mb-4">

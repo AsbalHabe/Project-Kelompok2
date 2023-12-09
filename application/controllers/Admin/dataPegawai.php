@@ -79,9 +79,10 @@ class dataPegawai extends CI_Controller
         }
     }
 
-    public function updateData($id){
-        $where = array('id_pegawai' => $id);
+    public function updateData($id)
+    {
         $data['title'] = 'Update Data Pegawai';
+        $where = array('id_pegawai' => $id);
         $data['jabatan'] = $this->PenggajianModel->get_data('data_jabatan')->result();
         $data['pegawai'] = $this->db->query("SELECT * FROM data_pegawai WHERE id_pegawai='$id'")->result();
         $this->load->view('template_admin/header_admin', $data);
@@ -95,52 +96,58 @@ class dataPegawai extends CI_Controller
         $this->_rules();
 
         if ($this->form_validation->run() == FALSE) {
-            $this->updateData();
+            $id = $this->input->post('id_pegawai');
+            $this->updateData($id);
         } else {
-            $id                         = $this->input->post('id');
-            $nik                        = $this->input->post('nik');
-            $nama_pegawai               = $this->input->post('nama_pegawai');
-            $jenis_kelamin              = $this->input->post('jenis_kelamin');
-            $tanggal_masuk              = $this->input->post('tanggal_masuk');
-            $jabatan                    = $this->input->post('jabatan');
-            $status                     = $this->input->post('status');
-            $foto                      = $_FILES['foto']['name'];
-            if ($foto){
-                $config['upload_path']   = '.assets/foto';
-                $config['allowed_types']  = 'jpg|png|jpeg|gif';
+            $id             = $this->input->post('id');
+            $nik            = $this->input->post('nik');
+            $nama_pegawai   = $this->input->post('nama_pegawai');
+            $jenis_kelamin  = $this->input->post('jenis_kelamin');
+            $tanggal_masuk  = $this->input->post('tanggal_masuk');
+            $jabatan        = $this->input->post('jabatan');
+            $status         = $this->input->post('status');
+            $foto           = $_FILES['foto']['name'];
+
+            if ($foto) {
+                $config['upload_path']   = './assets/foto';
+                $config['allowed_types'] = 'jpg|png|jpeg|gif';
                 $this->load->library('upload', $config);
-                if ($this->upload->do_upload('photo')) {
+
+                if ($this->upload->do_upload('foto')) {
                     $foto = $this->upload->data('file_name');
                     $this->db->set('foto', $foto);
                 } else {
-                    echo $this->upload->display_erorrs();
+                    echo $this->upload->display_errors();
                 }
             }
 
             $data = array(
-                'nik'                       => $nik,
-                'nama_pegawai'              => $nama_pegawai,
-                'jenis_kelamin'             => $jenis_kelamin,
-                'jabatan'                   => $jabatan,
-                'tanggal_masuk'             => $tanggal_masuk,
-                'status'                    => $status,
+                'nik'             => $nik,
+                'nama_pegawai'    => $nama_pegawai,
+                'jenis_kelamin'   => $jenis_kelamin,
+                'jabatan'         => $jabatan,
+                'tanggal_masuk'   => $tanggal_masuk,
+                'status'          => $status,
             );
 
             $where = array(
-                'id_pegawai'  => $id
+                'id_pegawai' => $id
             );
 
-            $this->PenggajianModel->get_data('data_pegawai', $data ,$where);
+            $this->PenggajianModel->update_data('data_pegawai', $data, $where);
             $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-dismissible fade show" role="alert">
                 <strong>Data Berhasil diupdate !</strong>
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
+                    <span aria-hidden="true">&times;</span>
                 </button>
-                </div>');
+            </div>');
             redirect('admin/dataPegawai');
         }
     }
-    
+
+
+
+
     public function _rules()
     {
         $this->form_validation->set_rules('nik', 'NIK', 'required');
