@@ -7,7 +7,7 @@
     </div>
     <div class="card mb-3">
         <div class="card-header bg-primary text-white">
-            Filter Data Absensi
+            Input Absensi Pegawai
         </div>
         <div class="card-body">
 
@@ -42,8 +42,8 @@
                     </select>
                 </div>
 
-                <button type="submit" class="btn btn-primary mb-2 ml-auto"><i class="far fa-eye"></i> Tampilkan Data</button>
-                <a href="<?php echo base_url('admin/dataAbsensi/inputAbsensi') ?>" class="btn btn-success mb-2 ml-3"><i class="fas fa-plus">Input Kehadiran</i></a>
+                <button type="submit" class="btn btn-primary mb-2 ml-auto"><i class="far fa-eye"></i> Generate Data</button>
+
             </form>
 
         </div>
@@ -66,44 +66,36 @@
         Tahun:<span class="font-weight-bold"><?php echo $tahun ?> </span>
     </div>
 
-    <?php 
-    
-    $jml_data = count($absensi);
-    if($jml_data > 0) { ?>
-
-    <table class="table table-bordered table-striped">
-        <tr>
-            <td class="text-center">No</td>
-            <td class="text-center">NIK</td>
-            <td class="text-center">Nama Pegawai</td>
-            <td class="text-center">Jenis Kelamin</td>
-            <td class="text-center">Jabatan</td>
-            <td class="text-center">Hadir</td>
-            <td class="text-center">Sakit</td>
-            <td class="text-center">Alfa</td>
-        </tr>
-        <?php $no = 1;
-        foreach ($absensi as $a) : ?>
+        <table class="table table-bordered table-striped">
             <tr>
-                <td><?php echo $no++ ?></td>
-                <td><?php echo $a->nik ?></td>
-                <td><?php echo $a->nama_pegawai ?></td>
-                <td><?php echo $a->jenis_kelamin ?></td>
-                <td><?php echo $a->nama_jabatan ?></td>
-                <td><?php echo $a->hadir ?></td>
-                <td><?php echo $a->sakit ?></td>
-                <td><?php echo $a->alfa ?></td>
+                <td class="text-center">No</td>
+                <td class="text-center">NIK</td>
+                <td class="text-center">Nama Pegawai</td>
+                <td class="text-center">Jenis Kelamin</td>
+                <td class="text-center">Jabatan</td>
+                <td class="text-center">Hadir</td>
+                <td class="text-center">Sakit</td>
+                <td class="text-center">Alfa</td>
             </tr>
-        <?php endforeach; ?>
+            <?php $no = 1;
+            foreach ($input_absensi as $a) : ?>
+                <tr>
+                    <td><?php echo $no++ ?></td>
+                    <td><?php echo $a->nik ?></td>
+                    <td><?php echo $a->nama_pegawai ?></td>
+                    <td><?php echo $a->jenis_kelamin ?></td>
+                    <td><?php echo $a->nama_jabatan ?></td>
+                    <td><?php echo $a->hadir ?></td>
+                    <td><?php echo $a->sakit ?></td>
+                    <td><?php echo $a->alfa ?></td>
+                </tr>
+            <?php endforeach; ?>
 
-    </table>
+        </table>
 
-    <?php }else{ ?>
-    <span class="badge badge-danger"><i class="fas fa-info-circle"> Data Masih Kosong, Sialhkan Input data Kehadiran pada bulan dan tahun yang anda 
-        pilih
-    </i></span>
-    <?php } ?>
-
+        <span class="badge badge-danger"><i class="fas fa-info-circle"> Data Masih Kosong, Sialhkan Input data Kehadiran pada bulan dan tahun yang anda
+                pilih
+            </i></span>
 
 
 

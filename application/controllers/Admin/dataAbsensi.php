@@ -31,7 +31,7 @@ class DataAbsensi extends CI_Controller
         $this->load->view('template_admin/footer_admin');
     }
 
-    public function inputAbensi(){
+    public function inputAbsensi(){
 
         $data['title'] = "Form Input Absensi";
         $this->load->view('template_admin/header_admin', $data);
