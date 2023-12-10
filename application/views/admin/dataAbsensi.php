@@ -43,28 +43,33 @@
                 </div>
 
                 <button type="submit" class="btn btn-primary mb-2 ml-auto"><i class="far fa-eye"></i> Tampilkan Data</button>
-                <a href="" class="btn btn-success mb-2 ml-3"><i class="fas fa-plus">Input Kehadiran</i></a>
+                <a href="<?php echo base_url('admin/dataAbsenesi/inputAbsensi')" class="btn btn-success mb-2 ml-3"><i class="fas fa-plus">Input Kehadiran</i></a>
             </form>
 
         </div>
     </div>
 
     <?php
-    if ((isset($_GET['bulan']) && $_GET['bulan']!='') && (isset($_GET['tahun']) &&
-     $_GET['tahun']!='')){
+    if ((isset($_GET['bulan']) && $_GET['bulan'] != '') && (isset($_GET['tahun']) &&
+        $_GET['tahun'] != '')) {
         $bulan = $_GET['bulan'];
         $tahun = $_GET['tahun'];
-        $bulantahun = $bulan.$tahun;
-     }else{
+        $bulantahun = $bulan . $tahun;
+    } else {
         $bulan = date('m');
         $tahun = date('Y');
-        $bulantahun = $bulan.$tahun;
-     }
+        $bulantahun = $bulan . $tahun;
+    }
     ?>
     <div class="alert alert-info">
-        Menampilkan Data Kehadiran Pegawai Bulan: <span class="font-weight-bold"><?php echo $bulan ?> </span> 
+        Menampilkan Data Kehadiran Pegawai Bulan: <span class="font-weight-bold"><?php echo $bulan ?> </span>
         Tahun:<span class="font-weight-bold"><?php echo $tahun ?> </span>
     </div>
+
+    <?php 
+    
+    $jml_data = count($absensi);
+    if($jml_data > 0) { ?>
 
     <table class="table table-bordered table-striped">
         <tr>
@@ -77,8 +82,8 @@
             <td class="text-center">Sakit</td>
             <td class="text-center">Alfa</td>
         </tr>
-        <?php $no=1; ?>
-        <?php foreach($absensi as $a) :?>
+        <?php $no = 1;
+        foreach ($absensi as $a) : ?>
             <tr>
                 <td><?php echo $no++ ?></td>
                 <td><?php echo $a->nik ?></td>
@@ -89,9 +94,15 @@
                 <td><?php echo $a->sakit ?></td>
                 <td><?php echo $a->alfa ?></td>
             </tr>
-            <?php endforeach ; ?>
+        <?php endforeach; ?>
 
     </table>
+
+    <?php }else{ ?>
+    <span class="badge badge-danger"><i class="fas fa-info-circle"> Data Masih Kosong, Sialhkan Input data Kehadiran pada bulan dan tahun yang anda 
+        pilih
+    </i></span>
+    <?php } ?>
 
 
 
