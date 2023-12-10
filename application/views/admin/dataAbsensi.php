@@ -43,7 +43,7 @@
                 </div>
 
                 <button type="submit" class="btn btn-primary mb-2 ml-auto"><i class="far fa-eye"></i> Tampilkan Data</button>
-                <a href="<?php echo base_url('admin/dataAbsenesi/inputAbsensi')" class="btn btn-success mb-2 ml-3"><i class="fas fa-plus">Input Kehadiran</i></a>
+                <a href="<?php echo base_url('admin/dataAbsenesi/inputAbsensi') ?>" class="btn btn-success mb-2 ml-3"><i class="fas fa-plus">Input Kehadiran</i></a>
             </form>
 
         </div>
