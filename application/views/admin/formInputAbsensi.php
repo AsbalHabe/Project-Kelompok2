@@ -65,37 +65,37 @@
         Menampilkan Data Kehadiran Pegawai Bulan: <span class="font-weight-bold"><?php echo $bulan ?> </span>
         Tahun:<span class="font-weight-bold"><?php echo $tahun ?> </span>
     </div>
-
-        <table class="table table-bordered table-striped">
+    
+    <form method="POST">
+    <button type="submit" class="btn btn-success mb-3" name="submit">Simpan</button>
+    <table class="table table-bordered table-striped">
+        <tr>
+            <td class="text-center">No</td>
+            <td class="text-center">NIK</td>
+            <td class="text-center">Nama Pegawai</td>
+            <td class="text-center">Jenis Kelamin</td>
+            <td class="text-center">Jabatan</td>
+            <td class="text-center" width="8%">Hadir</td>
+            <td class="text-center" width="8%">Sakit</td>
+            <td class="text-center" width="8%">Alfa</td>
+        </tr>
+        <?php $no = 1;
+        foreach ($input_absensi as $a) : ?>
             <tr>
-                <td class="text-center">No</td>
-                <td class="text-center">NIK</td>
-                <td class="text-center">Nama Pegawai</td>
-                <td class="text-center">Jenis Kelamin</td>
-                <td class="text-center">Jabatan</td>
-                <td class="text-center">Hadir</td>
-                <td class="text-center">Sakit</td>
-                <td class="text-center">Alfa</td>
+                <td><?php echo $no++ ?></td>
+                <td><?php echo $a->nik ?></td>
+                <td><?php echo $a->nama_pegawai ?></td>
+                <td><?php echo $a->jenis_kelamin ?></td>
+                <td><?php echo $a->nama_jabatan ?></td>
+                <td><input type="number" name="hadir[]" class="form-control" value="0"></td>
+                <td><input type="number" name="sakit[]" class="form-control" value="0"></td>
+                <td><input type="number" name="alfa[]" class="form-control" value="0"></td>
+
             </tr>
-            <?php $no = 1;
-            foreach ($input_absensi as $a) : ?>
-                <tr>
-                    <td><?php echo $no++ ?></td>
-                    <td><?php echo $a->nik ?></td>
-                    <td><?php echo $a->nama_pegawai ?></td>
-                    <td><?php echo $a->jenis_kelamin ?></td>
-                    <td><?php echo $a->nama_jabatan ?></td>
-                    <td><?php echo $a->hadir ?></td>
-                    <td><?php echo $a->sakit ?></td>
-                    <td><?php echo $a->alfa ?></td>
-                </tr>
-            <?php endforeach; ?>
+        <?php endforeach; ?>
 
-        </table>
-
-        <span class="badge badge-danger"><i class="fas fa-info-circle"> Data Masih Kosong, Sialhkan Input data Kehadiran pada bulan dan tahun yang anda
-                pilih
-            </i></span>
+    </table><br><br><br>
+    </form>
 
 
 
