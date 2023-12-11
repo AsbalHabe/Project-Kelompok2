@@ -37,7 +37,7 @@
                 <?php echo form_error('uang_makan','<div class="text-small text-danger"></div>') ?>
             </div>
 
-            <button type="submit" class="btn btn-success style="margin-bottom: 70px">Update</button>
+            <button type="submit" class="btn btn-success">Update</button>
         </form>
         <?php endforeach; ?>
         </div>
