@@ -37,7 +37,7 @@ class DataAbsensi extends CI_Controller
 
             $post=$this->input->post();
 
-            foreach ($post as $key => $value){
+            foreach ($post['bulan'] as $key => $value){
                 if($post ['bulan'][$key] !='' || $post['nik'][$key] !='')
                 {
                     $simpan[] = array(
@@ -49,13 +49,13 @@ class DataAbsensi extends CI_Controller
                         'nama_jabatan'          =>$post['nama_jabatan'][$key],
                         'hadir'                 =>$post['hadir'][$key],
                         'sakit'                 =>$post['sakit'][$key],
-                        'bulan'                 =>$post['alfa'][$key],
+                        'alfa'                 =>$post['alfa'][$key],
                         
                     );
                 }
             }
 
-            $this->PenggajianModel->insert_batch('data_kehadiran', $sipamn);
+            $this->PenggajianModel->insert_batch('data_kehadiran', $simpan);
             $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-dismissible fade show" role="alert">
                 <strong>Data Berhasil ditambahkan !</strong>
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
