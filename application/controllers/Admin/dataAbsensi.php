@@ -33,6 +33,39 @@ class DataAbsensi extends CI_Controller
 
     public function inputAbsensi()
     {
+        if($this->input->post('submit' , TRUE) == 'submit'){
+
+            $post=$this->input->post();
+
+            foreach ($post as $key => $value){
+                if($post ['bulan'][$key] !='' || $post['nik'][$key] !='')
+                {
+                    $simpan[] = array(
+
+                        'bulan'                 =>$post['bulan'][$key],
+                        'nik'                   =>$post['nik'][$key],
+                        'nama_pegawai'          =>$post['nama_pegawai'][$key],
+                        'jenis_kelamin'         =>$post['jenis_kelamin'][$key],
+                        'nama_jabatan'          =>$post['nama_jabatan'][$key],
+                        'hadir'                 =>$post['hadir'][$key],
+                        'sakit'                 =>$post['sakit'][$key],
+                        'bulan'                 =>$post['alfa'][$key],
+                        
+                    );
+                }
+            }
+
+            $this->PenggajianModel->insert_batch('data_kehadiran', $sipamn);
+            $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>Data Berhasil ditambahkan !</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+                </div>');
+            redirect('admin/dataAbsensi');
+            
+
+        }
 
         $data['title'] = "Form Input Absensi";
 
