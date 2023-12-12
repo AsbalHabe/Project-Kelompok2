@@ -5,7 +5,7 @@ class Autentifikasi extends CI_Controller
     {
         // If the user is already logged in, redirect to the user dashboard
         if ($this->session->userdata('email')) {
-            redirect('dashboard');
+            redirect('login');
         }
 
         $this->form_validation->set_rules(
@@ -28,7 +28,7 @@ class Autentifikasi extends CI_Controller
         );
 
         if ($this->form_validation->run() == false) {
-            $data['judul'] = 'Login';
+            $data['judul'] = 'login';
             $data['user'] = '';
 
             // Load views
@@ -57,7 +57,7 @@ class Autentifikasi extends CI_Controller
                     $this->session->set_userdata($data);
 
                     if ($user['role_id'] == 1) {
-                        redirect('admin');
+                        redirect('Admin');
                     } else {
                         if ($user['image'] == 'default.jpg') {
                             $this->session->set_flashdata('pesan', '<div class="alert alert-info alert-message" role="alert">Silahkan Ubah Profile Anda untuk Ubah Photo Profil</div>');
@@ -130,9 +130,7 @@ class Autentifikasi extends CI_Controller
             if ($this->form_validation->run() == false) {
                 // Load registration view with validation errors
                 $data['judul'] = 'Registrasi Member';
-                $this->load->view('templates/aute_header', $data);
-                $this->load->view('autentifikasi/registrasi');
-                $this->load->view('templates/aute_footer');
+                $this->load->view('autentifikasi/register');
             } else {
                 // Form validation successful, save user data
                 $email = $this->input->post('email', true);

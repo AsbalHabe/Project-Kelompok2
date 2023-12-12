@@ -32,7 +32,7 @@
 
             <!-- Logo -->
             <div class="app-brand justify-content-center">
-              <a href="login.php" class="app-brand-link gap-2">
+              <a href="<?php echo base_url('login.php') ?>" class="app-brand-link gap-2">
                 <span class="app-brand-text demo text-body fw-bolder">MeconAPP</span>
               </a>
             </div>
@@ -66,7 +66,7 @@
               </div>
 
               <div class="mb-3">
-                <a href="register.php" class="btn btn-secondary d-grid w-100">Register</a>
+                <a href="<?php echo base_url('register'); ?>" class="btn btn-secondary d-grid w-100">Register</a>
               </div>
             </form>
           </div>
