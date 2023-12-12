@@ -87,7 +87,7 @@ class Autentifikasi extends CI_Controller
             $this->load->view('autentifikasi/gagal');
         }
     
-    public function registrasi()
+    public function register()
         {
             // Redirect user to the dashboard if already logged in
             if ($this->session->userdata('email')) {
