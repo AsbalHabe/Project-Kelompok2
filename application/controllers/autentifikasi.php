@@ -45,7 +45,7 @@ class Autentifikasi extends CI_Controller
         $email = htmlspecialchars($this->input->post('email', true));
         $password = $this->input->post('password', true);
 
-        $user = $this->Modeluser->cekData(['email' => $email])->row_array();
+        $user = $this->PenggajianModel->cekData(['email' => $email])->row_array();
 
         if ($user) {
             if ($user['is_active'] == 1) {
@@ -130,7 +130,9 @@ class Autentifikasi extends CI_Controller
             if ($this->form_validation->run() == false) {
                 // Load registration view with validation errors
                 $data['judul'] = 'Registrasi Member';
+                $this->load->view('template_admin/header_admin', $data);
                 $this->load->view('autentifikasi/register');
+                $this->load->view('template_admin/footer_admin');
             } else {
                 // Form validation successful, save user data
                 $email = $this->input->post('email', true);
@@ -144,7 +146,7 @@ class Autentifikasi extends CI_Controller
                     'tanggal_input' => time()
                 ];
         
-                $this->Modeluser->simpanData($data); // Save user data using the model
+                $this->PenggajianModel->simpanData($data); // Save user data using the model
                 $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-message" role="alert">Selamat!! akun member anda sudah dibuat. Silahkan Aktivasi Akun anda</div>');
                 redirect('autentifikasi');
             }

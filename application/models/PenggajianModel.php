@@ -26,4 +26,8 @@ class PenggajianModel extends CI_Model{
             $this->db->insert_batch($table, $data);
         }
     }
+    public function simpanData($data = null)
+    {
+        $this->db->insert('user', $data);
+    }
 }
