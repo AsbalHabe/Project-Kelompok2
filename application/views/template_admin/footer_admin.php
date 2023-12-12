@@ -1,12 +1,12 @@
 <!-- Footer -->
 <footer class="sticky-footer bg-white fixed-bottom">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; PT MECON 2023</span>
-                    </div>
-                </div>
-            </footer>
-            <!-- End of Footer -->  
+    <div class="container my-auto">
+        <div class="copyright text-center my-auto">
+            <span>Copyright &copy; PT MECON 2023</span>
+        </div>
+    </div>
+</footer>
+<!-- End of Footer -->
 
 
 
@@ -26,6 +26,18 @@
 <!-- Page level custom scripts -->
 <script src="<?php echo base_url() ?>assets/js/demo/chart-area-demo.js"></script>
 <script src="<?php echo base_url() ?>assets/js/demo/chart-pie-demo.js"></script>
+
+
+<script src="<?php echo base_url() ?>assets/vendor/libs/jquery/jquery.js"></script>
+<script src="<?php echo base_url() ?>assets/vendor/libs/popper/popper.js"></script>
+<script src="<?php echo base_url() ?>assets/vendor/js/bootstrap.js"></script>
+<script src="<?php echo base_url() ?>assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+<script src="<?php echo base_url() ?>assets/vendor/js/menu.js"></script>
+<script src="<?php echo base_url() ?>assets/js/main.js"></script>
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+</body>
+
+</html>
 
 </body>
 

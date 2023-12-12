@@ -18,9 +18,8 @@
   <link rel="stylesheet" href="assets/vendor/css/pages/page-auth.css" />
   <script src="assets/vendor/js/helpers.js"></script>
   <script src="assets/js/config.js"></script>
-</head>
 
-<body>
+
   <!-- Content -->
 
   <div class="container-xxl">
@@ -33,25 +32,20 @@
             <!-- Logo -->
             <div class="app-brand justify-content-center">
               <a href="<?php echo base_url('login.php') ?>" class="app-brand-link gap-2">
-                <span class="app-brand-text demo text-body fw-bolder">MeconAPP</span>
+                <span class="app-brand-text demo text-body fw-bolder" style="text-transform: uppercase;">MeconAPP</span>
               </a>
             </div>
             <!-- /Logo -->
 
-            <form method="POST">
-              <div class="mb-3">
-                <label for="email" class="form-label">Username</label>
-                <input type="text" class="form-control" name="username" placeholder="username" autofocus />
+            <?= $this->session->flashdata('pesan'); ?>
+            <form class="user" method="post" action="<?= base_url('autentifikasi'); ?>">
+              <div class="form-group">
+                <input type="text" class="form-control form-control-user" value="<?= set_value('email'); ?>" id="email" placeholder="Masukkan Alamat Email" name="email">
+                <?= form_error('email', '<small class="text-danger pl-3">', '</small>'); ?>
               </div>
-
-              <div class="mb-3 form-password-toggle">
-                <div class="d-flex justify-content-between">
-                  <label class="form-label" for="password">Password</label>
-                </div>
-                <div class="input-group input-group-merge">
-                  <input type="password" class="form-control" name="password" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="password" />
-                  <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
-                </div>
+              <div class="form-group">
+                <input type="password" class="form-control form-control-user" id="password" placeholder="Password" name="password">
+                <?= form_error('password', '<small class="text-danger pl-3">', '</small>'); ?>
               </div>
 
               <div class="mb-3">
@@ -62,31 +56,19 @@
               </div>
 
               <div class="mb-3">
-              <a href="<?php echo base_url('admin/dashboard') ?>" class="btn btn-secondary d-grid w-100">Sign</a>
+                <a href="<?php echo base_url('admin/dashboard') ?>" class="btn btn-secondary d-grid w-100">Sign</a>
               </div>
 
               <div class="mb-3">
                 <a href="<?php echo base_url('autentifikasi/register') ?>" class="btn btn-secondary d-grid w-100">Register</a>
               </div>
+
             </form>
+
+
           </div>
         </div>
         <!-- /Register -->
       </div>
     </div>
   </div>
-
-  <!-- / Content -->
-
-  <!-- Core JS -->
-  <!-- build:js assets/vendor/js/core.js -->
-  <script src="assets/vendor/libs/jquery/jquery.js"></script>
-  <script src="assets/vendor/libs/popper/popper.js"></script>
-  <script src="assets/vendor/js/bootstrap.js"></script>
-  <script src="assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
-  <script src="assets/vendor/js/menu.js"></script>
-  <script src="assets/js/main.js"></script>
-  <script async defer src="https://buttons.github.io/buttons.js"></script>
-</body>
-
-</html>
