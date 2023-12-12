@@ -76,7 +76,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="<?php echo base_url('autentifikasi/login') ?>">
+                <a class="nav-link" href="<?php echo base_url('autentifikasi') ?>">
                     <i class="fas fa-fw fa-sign-out-alt"></i>
                     <span class="text-white">Logout</span></a>
             </li>
