@@ -66,7 +66,7 @@
               </div>
 
               <div class="mb-3">
-                <a href="<?php echo base_url('register'); ?>" class="btn btn-secondary d-grid w-100">Register</a>
+                <a href="<?php echo base_url('autentifikasi/register') ?>" class="btn btn-secondary d-grid w-100">Register</a>
               </div>
             </form>
           </div>
