@@ -48,10 +48,10 @@ class dataPegawai extends CI_Controller
             $foto                      = $_FILES['foto']['name'];
             if ($foto = '') {
             } else {
-                $config['upload_path']   = '.assets/foto';
+                $config['upload_path']   = '.assets/Foto';
                 $config['allowed_types']  = 'jpg|png|jpeg|gif';
                 $this->load->library('upload', $config);
-                if (!$this->upload->do_upload('photo')) {
+                if (!$this->upload->do_upload('foto')) {
                     echo "Foto Gagal di Upload!";
                 } else {
                     $foto = $this->upload->data('file_name');

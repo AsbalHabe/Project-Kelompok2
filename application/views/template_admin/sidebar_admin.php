@@ -4,14 +4,14 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-warning sidebar sidebar-success accordion" id="accordionSidebar">
+        <ul class="navbar-nav bg-success sidebar sidebar-light accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-                <div class="sidebar-brand-icon ">
-                    <i class="fas fa-hospital"></i>
+                <div class="sidebar-brand-icon brg-li">
+                    <i class="fas fa-hospital text-white"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">APP PENGGAJIAN</div>
+                <div class="sidebar-brand-text text-light mx-3">APP PENGGAJIAN</div>
             </a>
 
             <!-- Divider -->
@@ -21,14 +21,14 @@
             <li class="nav-item ">
                 <a class="nav-link" href="<?php echo base_url('admin/dashboard') ?>">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
+                    <span class="text-white">Dashboard</span></a>
             </li>
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-solid fa-database"></i>
-                    <span>Master Data</span>
+                    <span class="text-white">Master Data</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
@@ -43,7 +43,7 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
                     <i class="fas fa-fw fa-money-check-alt"></i>
-                    <span>Transaksi</span>
+                    <span class="text-white">Transaksi</span>
                 </a>
                 <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
@@ -58,7 +58,7 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
                     <i class="fas fa-fw fa-copy"></i>
-                    <span>Laporan</span>
+                    <span class="text-white">Laporan</span>
                 </a>
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
@@ -72,13 +72,13 @@
             <li class="nav-item">
                 <a class="nav-link" href="charts.html">
                     <i class="fas fa-fw fa-lock"></i>
-                    <span>Ubah Password</span></a>
+                    <span class="text-white">Ubah Password</span></a>
             </li>
 
             <li class="nav-item">
                 <a class="nav-link" href="<?php echo base_url('autentifikasi/login') ?>">
                     <i class="fas fa-fw fa-sign-out-alt"></i>
-                    <span>Logout</span></a>
+                    <span class="text-white">Logout</span></a>
             </li>
 
         </ul>
