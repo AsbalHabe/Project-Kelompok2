@@ -62,7 +62,7 @@
               </div>
 
               <div class="mb-3">
-                <button class="btn btn-primary d-grid w-100" type="submit" name="login">Sign in</button>
+              <a href="<?php echo base_url('admin/dashboard') ?>" class="btn btn-secondary d-grid w-100">Sign</a>
               </div>
 
               <div class="mb-3">
