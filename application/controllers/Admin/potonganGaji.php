@@ -49,9 +49,21 @@ class PotonganGaji extends CI_Controller
         }
     }
 
+    public function updateDate($id)
+    {
+        $where = array('id' => $id);
+        $data['title'] = "Update Potongan Gaji";
+        $data['pot_gaji'] = $this->db->query("SELECT * FROM potongan_gaji WHERE
+        id='$id'")->result();
+
+        $this->load->view('template_admin/header_admin', $data);
+        $this->load->view('template_admin/sidebar_admin');
+        $this->load->view('admin/updatePotonganGaji', $data);
+        $this->load->view('template_admin/footer_admin');
+    }
     public function _rules()
     {
-        $this->form_validation->set_rules('potongan','jenis potongan','required');
-        $this->form_validation->set_rules('jml_potongan','jumlah potongan','required');
+        $this->form_validation->set_rules('potongan', 'jenis potongan', 'required');
+        $this->form_validation->set_rules('jml_potongan', 'jumlah potongan', 'required');
     }
 }
