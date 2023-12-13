@@ -5,23 +5,16 @@ class Autentifikasi extends CI_Controller
     {
         // If the user is already logged in, redirect to the user dashboard
         if ($this->session->userdata('email')) {
-            redirect('login');
+            redirect('user');
         }
 
-        $this->form_validation->set_rules(
-            'email',
-            'Alamat Email',
-            'required|trim|valid_email',
-            [
+        $this->form_validation->set_rules('email', 'Alamat Email', 'required|trim|valid_email', [
                 'required' => 'Email Harus diisi!!',
                 'valid_email' => 'Email Tidak Benar!!'
             ]
         );
 
-        $this->form_validation->set_rules(
-            'password',
-            'Password',
-            'required|trim',
+        $this->form_validation->set_rules('password', 'Password', 'required|trim',
             [
                 'required' => 'Password Harus diisi'
             ]

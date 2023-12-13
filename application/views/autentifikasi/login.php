@@ -31,7 +31,7 @@
 
             <!-- Logo -->
             <div class="app-brand justify-content-center">
-              <a href="<?php echo base_url('login.php') ?>" class="app-brand-link gap-2">
+              <a href="<?php echo base_url('autentifikasi') ?>" class="app-brand-link gap-2">
                 <span class="app-brand-text demo text-body fw-bolder" style="text-transform: uppercase;">MeconAPP</span>
               </a>
             </div>
