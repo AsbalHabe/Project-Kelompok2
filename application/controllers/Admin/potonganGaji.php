@@ -49,7 +49,7 @@ class PotonganGaji extends CI_Controller
         }
     }
 
-    public function updateDate($id)
+    public function updateData($id)
     {
         $where = array('id' => $id);
         $data['title'] = "Update Potongan Gaji";
@@ -61,6 +61,50 @@ class PotonganGaji extends CI_Controller
         $this->load->view('admin/updatePotonganGaji', $data);
         $this->load->view('template_admin/footer_admin');
     }
+
+    public function updateDataAksi()
+    {
+        $this->_rules();
+
+        if ($this->form_validation->run() == FALSE) {
+            $id = $this->input->post('id');
+            $this->updateData($id);
+        } else {
+            $id           = $this->input->post('id');
+            $potongan     = $this->input->post('potongan');
+            $jml_potongan = $this->input->post('jml_potongan');
+
+            $data = array(
+                'potongan'     => $potongan,
+                'jml_potongan' => $jml_potongan,
+            );
+
+            $where = array('id' => $id);
+
+            $this->PenggajianModel->update_data('potongan_gaji', $data, $where);
+            $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Data berhasil diupdate</strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>');
+            redirect('admin/potonganGaji');
+        }
+    }
+
+    public function deleteData($id)
+    {
+        $where = array('id' => $id);
+        $this->PenggajianModel->delete_data($where, 'potongan_gaji');
+        $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Data berhasil dihapus</strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>');
+        redirect('admin/potonganGaji');
+    }
+
     public function _rules()
     {
         $this->form_validation->set_rules('potongan', 'jenis potongan', 'required');
