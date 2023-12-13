@@ -10,13 +10,13 @@
         <div class="card-body">
 
             <form method="POST" action="<?php echo base_url('admin/potonganGaji/tambahDataAksi') ?> ">
-                <div class="form-gorup">
+                <div class="form-group">
                     <label for="">Jenis Potongan</label>
                     <input type="text" name="potongan" class="form-control">
                     <?php echo form_error('potongan') ?>
                 </div>
 
-                <div class="form-gorup">
+                <div class="form-group">
                     <label for="">Jumlah Potongan</label>
                     <input type="number" name="jml_potongan" class="form-control">
                     <?php echo form_error('jml_potongan') ?>
@@ -24,10 +24,7 @@
                 <button type="submit" class="btn btn-primary">Simpan</button>
             </form>
 
-
         </div>
     </div>
-
-
 
 </div>
