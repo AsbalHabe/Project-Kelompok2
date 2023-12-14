@@ -76,10 +76,12 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="<?php echo base_url('autentifikasi') ?>">
+                <a class="nav-link" href="<?php echo base_url('autentifikasi') ?>" onclick="return confirm('Yakin logout?')">
                     <i class="fas fa-fw fa-sign-out-alt"></i>
-                    <span class="text-white">Logout</span></a>
+                    <span class="text-white">Logout</span>
+                </a>
             </li>
+
 
         </ul>
         <!-- End of Sidebar -->
@@ -135,7 +137,7 @@
                                 <i class="fas fa-user fa-sm fa-fw mr-2 text-dark"></i>
                                 Profile Saya
                             </a>
-                            
+
                         </div>
 
                     </ul>

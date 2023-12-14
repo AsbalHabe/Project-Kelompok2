@@ -106,11 +106,12 @@
 
                 <?php foreach ($potongan as $p) {
                     $alfa = $p->jml_potongan;
+                    $sakit =$p->jml_potongan;
                 } ?>
-                <?php
-                $no = 1;
-                foreach ($gaji as $g) : ?>
-                    <?php $potongan = $g->alfa * $alfa; ?>
+                <?php $no = 1;
+                    foreach ($gaji as $g) :
+                         if ($potongan = $g->alfa * $alfa) {
+                          }else {$potongan = $g->sakit * $sakit ; } ?>
                     <tr>
                         <td><?= $no++; ?></td>
                         <td><?= $g->nik; ?></td>

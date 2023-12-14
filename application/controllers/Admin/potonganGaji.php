@@ -31,7 +31,7 @@ class PotonganGaji extends CI_Controller
             $this->tambahData();
         } else {
             $potongan            = $this->input->post('potongan');
-            $jml_potongan        = $this->input->post('potongan');
+            $jml_potongan        = $this->input->post('jml_potongan');
 
             $data = array(
                 'potongan'       => $potongan,
