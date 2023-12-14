@@ -17,7 +17,7 @@
 <body>
 
     <center>
-        <h1>PT INDONESIA BANGKIT</h1>
+        <h1>MECON</h1>
         <h2>Daftar Gaji Pegawai</h2>
     </center>
 
