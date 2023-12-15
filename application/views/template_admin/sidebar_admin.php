@@ -7,7 +7,7 @@
         <ul class="navbar-nav bg-success sidebar sidebar-light accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="dashboard">
                 <div class="sidebar-brand-icon brg-li">
                     <i class="fas fa-hospital text-white"></i>
                 </div>
