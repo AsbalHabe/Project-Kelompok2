@@ -4,10 +4,8 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-success sidebar sidebar-light accordion" id="accordionSidebar">
-
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="dashboard">
+        <ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar" style="background: linear-gradient(45deg, #00274C, #0099FF); color: white;">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
                 <div class="sidebar-brand-icon brg-li">
                     <i class="fas fa-hospital text-white"></i>
                 </div>
@@ -20,9 +18,11 @@
             <!-- Nav Item - Dashboard -->
             <li class="nav-item ">
                 <a class="nav-link" href="<?php echo base_url('admin/dashboard') ?>">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <i class="fas fa-fw fa-bell"></i>
                     <span class="text-white">Dashboard</span></a>
             </li>
+
+            <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
@@ -37,6 +37,8 @@
                     </div>
                 </div>
             </li>
+
+            <hr class="sidebar-divider my-0">
 
 
             <!-- Nav Item - Utilities Collapse Menu -->
@@ -54,6 +56,8 @@
                 </div>
             </li>
 
+            <hr class="sidebar-divider my-0">
+
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
@@ -69,11 +73,15 @@
                 </div>
             </li>
 
+            <hr class="sidebar-divider my-0">
+
             <li class="nav-item">
                 <a class="nav-link" href="charts.html">
                     <i class="fas fa-fw fa-lock"></i>
                     <span class="text-white">Ubah Password</span></a>
             </li>
+
+            <hr class="sidebar-divider my-0">
 
             <li class="nav-item">
                 <a class="nav-link" href="<?php echo base_url('autentifikasi') ?>" onclick="return confirm('Yakin logout?')">
@@ -93,12 +101,7 @@
             <div id="content">
 
                 <!-- Topbar -->
-                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
-                    <!-- Sidebar Toggle (Topbar) -->
-                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                        <i class="fa fa-bars"></i>
-                    </button>
+                <nav class="navbar navbar-expand navbar-light topbar mb-4 static-top shadow" style="background: linear-gradient(45deg, #00274C, #0099FF); color: white;">
 
                     <!-- Topbar Search -->
                     <h4 class="font-weight-bold">
