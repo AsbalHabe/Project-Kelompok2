@@ -24,6 +24,17 @@
 
             <hr class="sidebar-divider my-0">
 
+            <!-- Nav Item - Announcement -->
+            <li class="nav-item">
+                <a class="nav-link" href="<?php echo base_url('admin/pengumuman') ?>">
+                    <i class="fas fa-fw fa-bullhorn"></i>
+                    <span class="text-white">Pengumuman</span>
+                </a>
+            </li>
+
+
+            <hr class="sidebar-divider my-0">
+
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
@@ -66,8 +77,8 @@
                 </a>
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="<?php echo base_url('admin/laporan_gaji') ?>">Laporan Gaji</a>
-                        <a class="collapse-item" href="<?php echo base_url('admin/laporan_absensi') ?>">Laporan Absensi</a>
+                        <a class="collapse-item" href="<?php echo base_url('admin/laporanGaji') ?>">Laporan Gaji</a>
+                        <a class="collapse-item" href="<?php echo base_url('admin/laporanAbsensi') ?>">Laporan Absensi</a>
                         <a class="collapse-item" href="<?php echo base_url('admin/slip_gaji') ?>">Slip Gaji</a>
                     </div>
                 </div>
