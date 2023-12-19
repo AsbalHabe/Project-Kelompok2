@@ -125,7 +125,7 @@
 
                     <!-- Topbar Search -->
                     <h4 class="font-weight-bold">
-                        <i class="fas fa-hospital"></i> Medical Online
+                        <i class="fas fa-hospital"></i> MECON
                     </h4>
 
 
@@ -164,7 +164,7 @@
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end dropdown-menu-right" aria-labelledby="navbarScrollingDropdown">
                                 <li><a class="dropdown-item" href="<?= base_url('user'); ?>">Profile Saya</a></li>
-                                <li><a class="dropdown-item" href="#">Logout</a></li>
+                                <li><a class="dropdown-item" href="<?php echo base_url('autentifikasi/logout') ?>" onclick="return confirm('Yakin logout?')">Logout</a></li>
                             </ul>
                         </li>
                     </ul>
