@@ -5,13 +5,15 @@ class Autentifikasi extends CI_Controller
     {
         parent::__construct();
 		$this->load->model('PenggajianModel');
+        $this->load->library('session');
     }
+    
     public function index()
     {
         $this->load->view('autentifikasi/login');
     }
 
-    private function _login()
+    public function login()
     {
         $email = htmlspecialchars($this->input->post('email', true));
         $password = $this->input->post('password', true);
@@ -26,14 +28,17 @@ class Autentifikasi extends CI_Controller
                         'role_id' => $user['role_id']
                     ];
                     $this->session->set_userdata($data);
-
-                    if ($user['role_id'] == 1) {
-                        redirect('Admin');
-                    } else {
-                        if ($user['image'] == 'default.jpg') {
-                            $this->session->set_flashdata('pesan', '<div class="alert alert-info alert-message" role="alert">Silahkan Ubah Profile Anda untuk Ubah Photo Profil</div>');
-                        }
-                        redirect('user');
+                    
+                    switch ($user['role_id']) {
+                        case  1:
+                            redirect('admin/dashboard');
+                          break;
+                        case 2:
+                            redirect('user/dashboard');
+                          break;
+                        default :
+                            redirect('autentifikasi');
+                            break;
                     }
                 } else {
                     $this->session->set_flashdata('pesan', '<div class="alert alert-danger alert-message" role="alert">Password salah!!</div>');
@@ -48,7 +53,7 @@ class Autentifikasi extends CI_Controller
             redirect('autentifikasi');
         }
     }
-
+    
     public function blok()
         {
             $this->load->view('autentifikasi/blok');
