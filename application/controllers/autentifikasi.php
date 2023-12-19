@@ -1,36 +1,14 @@
 <?php
 class Autentifikasi extends CI_Controller
 {
+    public function construct ()
+    {
+        parent::__construct();
+		$this->load->model('PenggajianModel');
+    }
     public function index()
     {
-        // If the user is already logged in, redirect to the user dashboard
-        if ($this->session->userdata('email')) {
-            redirect('user');
-        }
-
-        $this->form_validation->set_rules('email', 'Alamat Email', 'required|trim|valid_email', [
-                'required' => 'Email Harus diisi!!',
-                'valid_email' => 'Email Tidak Benar!!'
-            ]
-        );
-
-        $this->form_validation->set_rules('password', 'Password', 'required|trim',
-            [
-                'required' => 'Password Harus diisi'
-            ]
-        );
-
-        if ($this->form_validation->run() == false) {
-            $data['judul'] = 'login';
-            $data['user'] = '';
-
-            // Load views
-            $this->load->view('template_admin/header_admin', $data);
-            $this->load->view('autentifikasi/login');
-            $this->load->view('template_admin/footer_admin');
-        } else {
-            $this->_login();
-        }
+        $this->load->view('autentifikasi/login');
     }
 
     private function _login()
