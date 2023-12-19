@@ -39,4 +39,15 @@ class PenggajianModel extends CI_Model
     {
         return $this->db->get_where('user', $where);
     }
+
+    public function countData($table)
+    {
+        return $this->db->count_all($table);
+    }
+
+    public function get_data_pagination($table, $limit, $offset)
+    {
+        // Ambil data dengan batasan dan offset untuk fitur paginasi
+        return $this->db->get($table, $limit, $offset);
+    }
 }

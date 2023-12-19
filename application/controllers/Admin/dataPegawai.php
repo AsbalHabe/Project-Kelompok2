@@ -6,12 +6,31 @@ class DataPegawai extends CI_Controller
     public function index()
     {
         $data['title'] = "Data Pegawai";
-        $data['pegawai'] = $this->PenggajianModel->get_data('data_pegawai')->result();
+        $per_page = 10;
+
+        // Hitung total halaman
+        $total_rows = $this->PenggajianModel->countData('data_pegawai');
+        $total_pages = ceil($total_rows / $per_page);
+
+        // Dapatkan halaman saat ini dari parameter URL atau setel ke 1 jika tidak ada
+        $current_page = $this->input->get('page') ? $this->input->get('page') : 1;
+
+        // Hitung indeks data untuk halaman saat ini
+        $start_index = ($current_page - 1) * $per_page;
+
+        // Ambil data untuk halaman saat ini
+        $data['pegawai'] = $this->PenggajianModel->get_data_pagination('data_pegawai', $per_page, $start_index)->result();
+
+        // Tambahkan variabel untuk paginasi ke data yang dikirimkan ke tampilan
+        $data['current_page'] = $current_page;
+        $data['total_pages'] = $total_pages;
+
         $this->load->view('template_admin/header_admin', $data);
         $this->load->view('template_admin/sidebar_admin');
         $this->load->view('admin/dataPegawai', $data);
         $this->load->view('template_admin/footer_admin');
     }
+
 
     public function tambahData()
     {
@@ -36,11 +55,8 @@ class DataPegawai extends CI_Controller
             $tanggal_masuk = $this->input->post('tanggal_masuk');
             $jabatan       = $this->input->post('jabatan');
             $status        = $this->input->post('status');
-            $hak_akses     = $this->input->post('hak_akses');
-            $username      = $this->input->post('username');
-            $password      = md5($this->input->post('password'));
             $foto        = $_FILES['foto']['name'];
-            if ($foto= '') {
+            if ($foto = '') {
             } else {
                 $config['upload_path'] = './assets/foto';
                 $config['allowed_types'] = 'jpg|jpeg|png|tiff';
@@ -48,7 +64,7 @@ class DataPegawai extends CI_Controller
                 if (!$this->upload->do_upload('foto')) {
                     echo "fotogagal diupload!";
                 } else {
-                    $foto= $this->upload->data('file_name');
+                    $foto = $this->upload->data('file_name');
                 }
             }
 
@@ -59,9 +75,6 @@ class DataPegawai extends CI_Controller
                 'jabatan'       => $jabatan,
                 'tanggal_masuk' => $tanggal_masuk,
                 'status'        => $status,
-                'hak_akses'     => $hak_akses,
-                'username'      => $username,
-                'password'      => $password,
                 'foto'         => $foto,
             );
 
@@ -111,7 +124,7 @@ class DataPegawai extends CI_Controller
                 $config['allowed_types'] = 'jpg|jpeg|png|tiff';
                 $this->load->library('upload', $config);
                 if ($this->upload->do_upload('foto')) {
-                    $foto= $this->upload->data('file_name');
+                    $foto = $this->upload->data('file_name');
                     $this->db->set('foto', $foto);
                 } else {
                     echo $this->upload->display_errors();

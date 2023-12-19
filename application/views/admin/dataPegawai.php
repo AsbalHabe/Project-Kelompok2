@@ -10,6 +10,16 @@
 
     <a class="mb-2 mt-2 btn btn-sm btn-success" href="<?php echo base_url('admin/dataPegawai/tambahDataAksi') ?>"><i class="fas fa-plus">Tambah Pegawai</i></a>
 
+    <!-- Tombol Previous dan Next -->
+    <div class="text-right mb-2">
+        <?php if ($current_page > 1) : ?>
+            <a class="btn btn-sm btn-secondary" href="<?php echo base_url('admin/dataPegawai?page=' . ($current_page - 1)); ?>">Previous</a>
+        <?php endif; ?>
+
+        <?php if ($current_page < $total_pages) : ?>
+            <a class="btn btn-sm btn-secondary" href="<?php echo base_url('admin/dataPegawai?page=' . ($current_page + 1)); ?>">Next</a>
+        <?php endif; ?>
+    </div>
     <table class="table table-striped table-bordered">
         <tr>
             <th class="text-center">No</th>
@@ -23,7 +33,8 @@
             <th class="text-center">Action</th>
         </tr>
 
-        <?php $no=1; foreach($pegawai as $p) : ?>
+        <?php $no = 1;
+        foreach ($pegawai as $p) : ?>
             <tr>
                 <td><?php echo $no++ ?></td>
                 <td><?php echo $p->nik ?></td>
@@ -32,14 +43,14 @@
                 <td><?php echo $p->jabatan ?></td>
                 <td><?php echo $p->tanggal_masuk ?></td>
                 <td><?php echo $p->status ?></td>
-                <td><img src="<?php echo base_url().'assets/Foto/'.$p->foto ?>" width="75px"></td>
+                <td><img src="<?php echo base_url() . 'assets/Foto/' . $p->foto ?>" width="75px"></td>
                 <td>
-                <div class="text-center">
+                    <div class="text-center">
                         <a class="btn btn-sm btn-primary" href="<?php echo base_url('admin/dataPegawai/updateData/' . $p->id_pegawai); ?>"><i class="fas fa-edit"></i></a>
                         <a onclick="return confirm('Yakin Hapus?')" class="btn btn-sm btn-danger" href="<?php echo base_url('admin/dataPegawai/deleteData/' . $p->id_pegawai); ?>"><i class="fas fa-trash"></i></a>
                     </div>
                 </td>
-                
+
             </tr>
         <?php endforeach; ?>
     </table>

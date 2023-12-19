@@ -116,7 +116,7 @@
 
                     <!-- Topbar Search -->
                     <h4 class="font-weight-bold">
-                        <i class="fas fa-hospital"></i> Medcial Online
+                        <i class="fas fa-hospital"></i> Medical Online
                     </h4>
 
 
