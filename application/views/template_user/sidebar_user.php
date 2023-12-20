@@ -9,7 +9,7 @@
                 <div class="sidebar-brand-icon brg-li">
                     <i class="fas fa-hospital text-white"></i>
                 </div>
-                <div class="sidebar-brand-text text-light mx-3">APP PENGGAJIAN ADMIN</div>
+                <div class="sidebar-brand-text text-light mx-3">APP PENGGAJIAN USER</div>
             </a>
 
             <!-- Divider -->

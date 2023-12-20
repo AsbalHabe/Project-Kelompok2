@@ -1,93 +1,124 @@
-<footer class="footer">
-		<div class="footer_background" style="background-image:url(assets/img/images/footer_background.png)"></div>
-		<div class="container">
-			<div class="row footer_row">
-				<div class="col">
-					<div class="footer_content">
-						<div class="row">
+<!-- Footer -->
+<footer class="sticky-footer bg-white">
+    <div class="container my-auto">
+        <div class="copyright text-center my-auto">
+            <span>Copyright &copy; Mecon <?= date('Y'); ?></span>
+        </div>
+    </div>
+</footer>
+<!-- End of Footer -->
 
-							<div class="col-lg-3 footer_col">
-					
-								<!-- Footer About -->
-								<div class="footer_section footer_about">
-									<div class="footer_logo_container">
-										<a href="#">
-											<div class="footer_logo_text">Toko<span>Sepatu</span></div>
-										</a>
-									</div>
-									<div class="footer_about_text">
-										<p>Kuliah??? Bsi aja....</p>
-									</div>
-									<div class="footer_social">
-										<ul>
-											<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-											<li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
-											<li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-											<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-										</ul>
-									</div>
-								</div>
-								
-							</div>
+</div>
+<!-- End of Content Wrapper -->
 
-							<div class="col-lg-3 footer_col">
-					
-								<!-- Footer Contact -->
-								<div class="footer_section footer_contact">
-									<div class="footer_title">Contact Us</div>
-									<div class="footer_contact_info">
-										<ul>
-											<li>Email: tokosepatu@gmail.com</li>
-											<li>Phone:  +62 8082 3102 8882</li>
-											<li>Jalan Raya Tangerang, Bsd</li>
-										</ul>
-									</div>
-								</div>
-								
-							</div>
+</div>
+<!-- End of Page Wrapper -->
 
-							<div class="col-lg-3 footer_col">
-					
-								<!-- Footer links -->
-								<div class="footer_section footer_links">
-									<div class="footer_title">In Here</div>
-									<div class="footer_links_container">
-										<ul>
-											<li><a href="index.html">Home</a></li>
-											<li><a href="about.html">About</a></li>
-											<li><a href="contact.html">Contact</a></li>
-											<li><a href="#">Catalog</a></li>
-										</ul>
-									</div>
-								</div>
-								
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+</a>
 
-			<div class="row copyright_row">
-				<div class="col">
-					<div class="copyright d-flex flex-lg-row flex-column align-items-center justify-content-start">
-						<div class="cr_text">Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with By Kelompok 3</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</footer>
 
-<script src="js/jquery-3.2.1.min.js"></script>
-<script src="asssets/css/styles/bootstrap4/popper.js"></script>
-<script src="assets/css/styles/bootstrap4/bootstrap.min.js"></script>
-<script src="assets/plugins/greensock/TweenMax.min.js"></script>
-<script src="assets/plugins/greensock/TimelineMax.min.js"></script>
-<script src="assets/plugins/scrollmagic/ScrollMagic.min.js"></script>
-<script src="assets/plugins/greensock/animation.gsap.min.js"></script>
-<script src="assets/plugins/greensock/ScrollToPlugin.min.js"></script>
-<script src="assets/plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
-<script src="assets/plugins/easing/easing.js"></script>
-<script src="assets/plugins/parallax-js-master/parallax.min.js"></script>
-<script src="js/custom.js"></script>
+<!-- Bootstrap core JavaScript-->
+<script src="<?php echo base_url() ?>assets/vendor/jquery/jquery.min.js"></script>
+<script src="<?php echo base_url() ?>assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Core plugin JavaScript-->
+<script src="<?php echo base_url() ?>assets/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+<!-- Custom scripts for all pages-->
+<script src="<?php echo base_url() ?>assets/js/sb-admin-2.min.js"></script>
+
+<!-- Page level plugins -->
+<script src="<?php echo base_url() ?>assets/vendor/chart.js/Chart.min.js"></script>
+
+<!-- Page level custom scripts -->
+<script src="<?php echo base_url() ?>assets/js/demo/chart-area-demo.js"></script>
+<script src="<?php echo base_url() ?>assets/js/demo/chart-pie-demo.js"></script>
+
+
+<script src="<?php echo base_url() ?>assets/vendor/libs/jquery/jquery.js"></script>
+<script src="<?php echo base_url() ?>assets/vendor/libs/popper/popper.js"></script>
+<script src="<?php echo base_url() ?>assets/vendor/js/bootstrap.js"></script>
+<script src="<?php echo base_url() ?>assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+<script src="<?php echo base_url() ?>assets/vendor/js/menu.js"></script>
+<script src="<?php echo base_url() ?>assets/js/main.js"></script>
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+<script type="text/javascript">
+    // Pie Chart Example
+    var ctx = document.getElementById("myPieChart");
+    var myPieChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: ["Dokter", "Staff", "Admin", "IT Developer", "Ceo"],
+            datasets: [{
+                data: [
+                    <?php echo $this->db->query("select jabatan from data_pegawai where jabatan='Dokter'")->num_rows(); ?>,
+                    <?php echo $this->db->query("select jabatan from data_pegawai where jabatan='Staff'")->num_rows(); ?>,
+                    <?php echo $this->db->query("select jabatan from data_pegawai where jabatan='Admin'")->num_rows(); ?>,
+                    <?php echo $this->db->query("select jabatan from data_pegawai where jabatan='IT Developer'")->num_rows(); ?>,
+                    <?php echo $this->db->query("select jabatan from data_pegawai where jabatan='Ceo'")->num_rows(); ?>
+                ],
+                backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc', '#dddfeb', '#2e59d9'],
+                hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf', '#dddfeb', '#2e59d9'],
+            }],
+
+        },
+        options: {
+            maintainAspectRatio: false,
+            tooltips: {
+                backgroundColor: "rgb(255,255,255)",
+                bodyFontColor: "#858796",
+                borderColor: '#dddfeb',
+                borderWidth: 1,
+                xPadding: 15,
+                yPadding: 15,
+                displayColors: false,
+                caretPadding: 10,
+            },
+            legend: {
+                display: false
+            },
+            cutoutPercentage: 80,
+        },
+    });
+</script>
+
+<script type="text/javascript">
+    // Area Chart Example
+    var ctx = document.getElementById("myBarChart");
+    var myBarChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ["Laki - Laki", "Perempuan"],
+            datasets: [{
+                label: "Berdasarkan Jenis Kelamin",
+                backgroundColor: 'rgb(23, 125, 255)',
+                borderColor: 'rgb(23, 125, 255)',
+                data: [<?php echo $this->db->query("select jenis_kelamin from data_pegawai where jenis_kelamin='Laki-laki'")->num_rows(); ?>,
+                    <?php echo $this->db->query("select jenis_kelamin from data_pegawai where jenis_kelamin='Perempuan'")->num_rows(); ?>,
+                ],
+            }],
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            },
+        }
+    });
+</script>
 </body>
+
+</html>
+
+</body>
+
 </html>
