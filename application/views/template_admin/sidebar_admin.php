@@ -81,7 +81,7 @@
                         <a class="collapse-item" href="<?php echo base_url('admin/laporanGaji') ?>">Laporan Gaji</a>
                         <a class="collapse-item" href="<?php echo base_url('admin/laporanAbsensi') ?>">Laporan
                             Absensi</a>
-                        <a class="collapse-item" href="<?php echo base_url('admin/slip_gaji') ?>">Slip Gaji</a>
+                        <a class="collapse-item" href="<?php echo base_url('admin/slipGaji') ?>">Slip Gaji</a>
                     </div>
                 </div>
             </li>
