@@ -26,6 +26,18 @@
                     </div>
 
                     <div class="form-group">
+                        <label for="">Username</label>
+                        <input type="text" name="username" class="form-control" value="<?= $p->email; ?>">
+                        <?= form_error('email', '<div class="text-small text-danger">', '</div>') ?>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="">Password</label>
+                        <input type="password" name="password" class="form-control" value="<?= $p->password; ?>">
+                        <?= form_error('password', '<div class="text-small text-danger">', '</div>') ?>
+                    </div>
+
+                    <div class="form-group">
                         <label for="">Jenis Kelamin</label>
                         <select name="jenis_kelamin" id="" class="form-control">
                             <option value="<?= $p->jenis_kelamin; ?>"><?= $p->jenis_kelamin; ?></option>
@@ -67,6 +79,20 @@
                         <input type="file" name="foto" class="form-control" value="<?= $p->foto; ?>">
                         <?= form_error('foto', '<div class="text-small text-danger">', '</div>') ?>
                     </div>
+
+                    <div class="form-group">
+                        <label for="">Hak Akses</label>
+                        <select name="role" id="" class="form-control">
+                            <option value="<?= $p->role; ?>">
+                                <?php if ($p->role == '1') echo "Admin";
+                                else echo "Pegawai";
+                                ?>
+                            </option>
+                            <option value="1">Admin</option>
+                            <option value="2">Pegawai</option>
+                        </select>
+                    </div>
+
 
 
 

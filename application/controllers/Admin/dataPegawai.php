@@ -55,6 +55,9 @@ class DataPegawai extends CI_Controller
             $tanggal_masuk = $this->input->post('tanggal_masuk');
             $jabatan       = $this->input->post('jabatan');
             $status        = $this->input->post('status');
+            $role          = $this->input->post('role');
+            $email          = $this->input->post('email');
+            $password        =md5($this->input->post('password'));
             $foto        = $_FILES['foto']['name'];
             if ($foto = '') {
             } else {
@@ -75,6 +78,9 @@ class DataPegawai extends CI_Controller
                 'jabatan'       => $jabatan,
                 'tanggal_masuk' => $tanggal_masuk,
                 'status'        => $status,
+                'role'          => $role,
+                'email'         => $email,
+                'password'      => $password,
                 'foto'         => $foto,
             );
 
@@ -111,13 +117,16 @@ class DataPegawai extends CI_Controller
             $id = $this->input->post('id_pegawai');
             $this->updateData($id);
         } else {
-            $id            = $this->input->post('id_pegawai');
-            $nik           = $this->input->post('nik');
-            $nama_pegawai  = $this->input->post('nama_pegawai');
-            $jenis_kelamin = $this->input->post('jenis_kelamin');
-            $tanggal_masuk = $this->input->post('tanggal_masuk');
-            $jabatan       = $this->input->post('jabatan');
-            $status        = $this->input->post('status');
+            $id               = $this->input->post('id_pegawai');
+            $nik              = $this->input->post('nik');
+            $nama_pegawai     = $this->input->post('nama_pegawai');
+            $jenis_kelamin    = $this->input->post('jenis_kelamin');
+            $tanggal_masuk    = $this->input->post('tanggal_masuk');
+            $jabatan          = $this->input->post('jabatan');
+            $status           = $this->input->post('status');
+            $role            = $this->input->post('role');
+             $email          = $this->input->post('email');
+            $password        = md5($this->input->post('password'));
             $foto        = $_FILES['foto']['name'];
             if ($foto) {
                 $config['upload_path'] = './assets/Foto';
@@ -138,6 +147,9 @@ class DataPegawai extends CI_Controller
                 'jabatan'       => $jabatan,
                 'tanggal_masuk' => $tanggal_masuk,
                 'status'        => $status,
+                'role'          => $role,
+                'email'         => $email,
+                'password'      => $password,
             );
 
             $where = array('id_pegawai' => $id);

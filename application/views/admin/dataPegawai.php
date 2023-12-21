@@ -30,6 +30,7 @@
             <th class="text-center">Tanggal Masuk</th>
             <th class="text-center">Status</th>
             <th class="text-center">Photo</th>
+            <th class="text-center">Hak Akses</th>
             <th class="text-center">Action</th>
         </tr>
 
@@ -44,6 +45,12 @@
                 <td><?php echo $p->tanggal_masuk ?></td>
                 <td><?php echo $p->status ?></td>
                 <td><img src="<?php echo base_url() . 'assets/Foto/' . $p->foto ?>" width="75px"></td>
+                <?php if ($p->role == '1') { ?>
+                    <td>Admin</td>
+                <?php } else { ?>
+                    <td>Pegawai</td>
+                <?php } ?>
+
                 <td>
                     <div class="text-center">
                         <a class="btn btn-sm btn-primary" href="<?php echo base_url('admin/dataPegawai/updateData/' . $p->id_pegawai); ?>"><i class="fas fa-edit"></i></a>

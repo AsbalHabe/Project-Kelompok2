@@ -14,13 +14,25 @@
                 <div class="form-group">
                     <label>NIK</label>
                     <input type="number" name="nik" class="form-control">
-                    <?php echo form_error('nik','<div class="text-small text-danger"></div>') ?>
+                    <?php echo form_error('nik', '<div class="text-small text-danger"></div>') ?>
                 </div>
 
                 <div class="form-group">
                     <label>Nama Pegawai</label>
                     <input type="text" name="nama_pegawai" class="form-control">
-                    <?php echo form_error('nama_pegawai','<div class="text-small text-danger"></div>') ?>
+                    <?php echo form_error('nama_pegawai', '<div class="text-small text-danger"></div>') ?>
+                </div>
+
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" name="email" class="form-control">
+                    <?php echo form_error('email', '<div class="text-small text-danger"></div>') ?>
+                </div>
+
+                <div class="form-group">
+                    <label for="">Password</label>
+                    <input type="password" name="password" class="form-control">
+                    <?= form_error('password', '<div class="text-small text-danger">', '</div>') ?>
                 </div>
 
                 <div class="form-group">
@@ -30,7 +42,7 @@
                         <option value="Laki-laki">Laki-laki</option>
                         <option value="Perempuan">Perempuan</option>
                     </select>
-                    <?php echo form_error('jenis_kelamin','<div class="text-small text-danger"></div>') ?>
+                    <?php echo form_error('jenis_kelamin', '<div class="text-small text-danger"></div>') ?>
                 </div>
 
                 <div class="form-group">
@@ -41,13 +53,13 @@
                             <option value="<?php echo $j->nama_jabatan ?>"><?php echo $j->nama_jabatan ?></option>
                         <?php endforeach; ?>
                     </select>
-                    <?php echo form_error('jabatan','<div class="text-small text-danger"></div>') ?>
+                    <?php echo form_error('jabatan', '<div class="text-small text-danger"></div>') ?>
                 </div>
 
                 <div class="form-group">
                     <label>Tanggal Masuk</label>
                     <input type="date" name="tanggal_masuk" class="form-control">
-                    <?php echo form_error('tanggal_masuk','<div class="text-small text-danger"></div>') ?>
+                    <?php echo form_error('tanggal_masuk', '<div class="text-small text-danger"></div>') ?>
                 </div>
 
                 <div class="form-group">
@@ -57,7 +69,7 @@
                         <option value="Pegawai Tetap">Pegawai Tetap</option>
                         <option value="Pegawai Tidak Tetap">Pegawai Tidak Tetap</option>
                     </select>
-                    <?php echo form_error('status','<div class="text-small text-danger"></div>') ?>
+                    <?php echo form_error('status', '<div class="text-small text-danger"></div>') ?>
                 </div>
 
                 <div class="form-group">
@@ -65,11 +77,20 @@
                     <input type="file" name="foto" class="form-control">
                 </div>
 
+                <div class="form-group">
+                    <label>Hak Akses</label>
+                    <select name="role" id="" class="form-control">
+                        <option value="">---Pilih Hak Akses---</option>
+                        <option value="1">Admin</option>
+                        <option value="2">Pegawai</option>
+                    </select>
+                </div>
+
                 <button type="submit" class="btn btn-sm btn-primary">Simpan data</button>
 
             </form>
         </div>
     </div>
-    
+
 
 </div>

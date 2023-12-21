@@ -26,7 +26,7 @@
 
             <!-- Nav Item - Announcement -->
             <li class="nav-item">
-                <a class="nav-link" href="<?php echo base_url('admin/pengumuman') ?>">
+                <a class="nav-link" href="<?php echo base_url('admin/Announcement') ?>">
                     <i class="fas fa-fw fa-bullhorn"></i>
                     <span class="text-white">Pengumuman</span>
                 </a>
