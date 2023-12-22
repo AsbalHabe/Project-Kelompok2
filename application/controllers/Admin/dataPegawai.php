@@ -49,58 +49,69 @@ class DataPegawai extends CI_Controller
         if ($this->form_validation->run() == FALSE) {
             $this->tambahData();
         } else {
-            $nik           = $this->input->post('nik');
-            $nama_pegawai  = $this->input->post('nama_pegawai');
-            $jenis_kelamin = $this->input->post('jenis_kelamin');
-            $tanggal_masuk = $this->input->post('tanggal_masuk');
-            $jabatan       = $this->input->post('jabatan');
-            $status        = $this->input->post('status');
-            $role          = $this->input->post('role');
-            $email          = $this->input->post('email');
-            $password        =md5($this->input->post('password'));
-            $foto        = $_FILES['foto']['name'];
-            if ($foto = '') {
+            $nik = $this->input->post('nik');
+
+            // Validasi tambahan: pastikan NIK unik
+            $this->form_validation->set_rules('nik', 'NIK', 'is_unique[data_pegawai.nik]');
+
+            if ($this->form_validation->run() == FALSE) {
+                $this->tambahData();
             } else {
-                $config['upload_path'] = './assets/foto';
-                $config['allowed_types'] = 'jpg|jpeg|png|tiff';
-                $this->load->library('upload', $config);
-                if (!$this->upload->do_upload('foto')) {
-                    echo "fotogagal diupload!";
-                } else {
-                    $foto = $this->upload->data('file_name');
+                // NIK belum ada, lanjutkan dengan penyisipan data ke database
+
+                $nama_pegawai     = $this->input->post('nama_pegawai');
+                $jenis_kelamin    = $this->input->post('jenis_kelamin');
+                $tanggal_masuk    = $this->input->post('tanggal_masuk');
+                $jabatan          = $this->input->post('jabatan');
+                $status           = $this->input->post('status');
+                $role             = $this->input->post('role');
+                $email            = $this->input->post('email');
+                $password         = password_hash($this->input->post('password'), PASSWORD_DEFAULT);
+                $foto             = $_FILES['foto']['name'];
+
+                if ($foto) {
+                    $config['upload_path'] = './assets/Foto';
+                    $config['allowed_types'] = 'jpg|jpeg|png|tiff';
+                    $this->load->library('upload', $config);
+
+                    if ($this->upload->do_upload('foto')) {
+                        $foto = $this->upload->data('file_name');
+                    } else {
+                        echo $this->upload->display_errors();
+                    }
                 }
+
+                $data = array(
+                    'nik'           => $nik,
+                    'nama_pegawai'  => $nama_pegawai,
+                    'jenis_kelamin' => $jenis_kelamin,
+                    'jabatan'       => $jabatan,
+                    'tanggal_masuk' => $tanggal_masuk,
+                    'status'        => $status,
+                    'role'          => $role,
+                    'email'         => $email,
+                    'password'      => $password,
+                    'foto'          => $foto,
+                );
+
+                $this->PenggajianModel->insert_data($data, 'data_pegawai');
+                $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>Data berhasil ditambahkan</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>');
+                redirect('admin/dataPegawai');
             }
-
-            $data = array(
-                'nik' => $nik,
-                'nama_pegawai'  => $nama_pegawai,
-                'jenis_kelamin' => $jenis_kelamin,
-                'jabatan'       => $jabatan,
-                'tanggal_masuk' => $tanggal_masuk,
-                'status'        => $status,
-                'role'          => $role,
-                'email'         => $email,
-                'password'      => $password,
-                'foto'         => $foto,
-            );
-
-            $this->PenggajianModel->insert_data($data, 'data_pegawai');
-            $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-dismissible fade show" role="alert">
-        <strong>Data berhasil ditambahkan</strong>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>');
-            redirect('admin/dataPegawai');
         }
     }
 
-    public function updateData($id)
+
+    public function updateData($nik)
     {
-        // $where = array('id_pegawai' => $id);
         $data['title'] = "Update Data Pegawai";
         $data['jabatan'] = $this->PenggajianModel->get_data('data_jabatan')->result();
-        $data['pegawai'] = $this->db->query("SELECT * FROM data_pegawai WHERE id_pegawai = '$id'")->result();
+        $data['pegawai'] = $this->db->query("SELECT * FROM data_pegawai WHERE nik = '$nik'")->result();
         $this->load->view('template_admin/header_admin', $data);
         $this->load->view('template_admin/sidebar_admin');
         $this->load->view('admin/formUpdatePegawai', $data);
@@ -109,32 +120,30 @@ class DataPegawai extends CI_Controller
 
     public function updateDataAksi()
     {
-        // echo "disini";
-        // die;
         $this->_rules();
 
         if ($this->form_validation->run() == FALSE) {
-            $id = $this->input->post('id_pegawai');
-            $this->updateData($id);
+            $nik = $this->input->post('nik');
+            $this->updateData($nik);
         } else {
-            $id               = $this->input->post('id_pegawai');
             $nik              = $this->input->post('nik');
             $nama_pegawai     = $this->input->post('nama_pegawai');
             $jenis_kelamin    = $this->input->post('jenis_kelamin');
             $tanggal_masuk    = $this->input->post('tanggal_masuk');
             $jabatan          = $this->input->post('jabatan');
             $status           = $this->input->post('status');
-            $role            = $this->input->post('role');
-             $email          = $this->input->post('email');
-            $password        = md5($this->input->post('password'));
-            $foto        = $_FILES['foto']['name'];
+            $role             = $this->input->post('role');
+            $email            = $this->input->post('email');
+            $password         = password_hash($this->input->post('password'), PASSWORD_DEFAULT);
+            $foto             = $_FILES['foto']['name'];
+
             if ($foto) {
                 $config['upload_path'] = './assets/Foto';
                 $config['allowed_types'] = 'jpg|jpeg|png|tiff';
                 $this->load->library('upload', $config);
+
                 if ($this->upload->do_upload('foto')) {
                     $foto = $this->upload->data('file_name');
-                    $this->db->set('foto', $foto);
                 } else {
                     echo $this->upload->display_errors();
                 }
@@ -152,7 +161,7 @@ class DataPegawai extends CI_Controller
                 'password'      => $password,
             );
 
-            $where = array('id_pegawai' => $id);
+            $where = array('nik' => $nik);
 
             $this->PenggajianModel->update_data('data_pegawai', $data, $where);
             $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -165,9 +174,9 @@ class DataPegawai extends CI_Controller
         }
     }
 
-    public function deleteData($id)
+    public function deleteData($nik)
     {
-        $where = array('id_pegawai' => $id);
+        $where = array('nik' => $nik);
         $this->PenggajianModel->delete_data($where, 'data_pegawai');
         $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-dismissible fade show" role="alert">
         <strong>Data berhasil dihapus</strong>
@@ -180,7 +189,9 @@ class DataPegawai extends CI_Controller
 
     public function _rules()
     {
-        $this->form_validation->set_rules('nik', 'NIK', 'required');
+        $this->form_validation->set_rules('nik', 'Nomor Induk Kependudukan', 'required|numeric|is_unique[data_pegawai.nik]', [
+            'is_unique' => 'Nomor Induk Kependudukan (NIK) sudah terdaftar, gunakan NIK yang berbeda.'
+        ]);
         $this->form_validation->set_rules('nama_pegawai', 'Nama Pegawai', 'required');
         $this->form_validation->set_rules('jenis_kelamin', 'Jenis Kelamin', 'required');
         $this->form_validation->set_rules('tanggal_masuk', 'Tanggal Masuk', 'required');

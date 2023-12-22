@@ -50,4 +50,12 @@ class PenggajianModel extends CI_Model
         // Ambil data dengan batasan dan offset untuk fitur paginasi
         return $this->db->get($table, $limit, $offset);
     }
+
+    // Model (PenggajianModel.php)
+    public function checkNikExists($nik)
+    {
+        $this->db->where('nik', $nik);
+        $query = $this->db->get('data_pegawai');
+        return $query->num_rows() > 0;
+    }
 }

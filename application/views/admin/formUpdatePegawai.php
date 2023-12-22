@@ -12,12 +12,6 @@
             <?php foreach ($pegawai as $p) : ?>
 
                 <form action="<?= base_url('admin/dataPegawai/updateDataAksi') ?>" method="post" enctype="multipart/form-data">
-                    <div class="form-group">
-                        <label for="">NIK</label>
-                        <input type="hidden" name="id_pegawai" value="<?= $p->id_pegawai; ?>">
-                        <input type="number" name="nik" class="form-control" value="<?= $p->nik; ?>">
-                        <?= form_error('nik', '<div class="text-small text-danger">', '</div>') ?>
-                    </div>
 
                     <div class="form-group">
                         <label for="">Nama Pegawai</label>
