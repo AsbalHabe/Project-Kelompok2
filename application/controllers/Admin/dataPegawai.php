@@ -6,7 +6,7 @@ class DataPegawai extends CI_Controller
     public function index()
     {
         $data['title'] = "Data Pegawai";
-        $per_page = 10;
+        $per_page = 5;
 
         // Hitung total halaman
         $total_rows = $this->PenggajianModel->countData('data_pegawai');
