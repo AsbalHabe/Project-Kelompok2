@@ -165,7 +165,7 @@
                         <div class="topbar-divider d-none d-sm-block"></div>
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Selamat Datang <?= $this->session->userdata('nama_pegawai'); ?></span>
+                                <span class="mr-2 d-none d-lg-inline text-dark-small">Selamat Datang <?= $this->session->userdata('nama_pegawai'); ?></span>
                                 <img class="img-profile rounded-circle" src="<?= base_url('assets/foto/') . $this->session->userdata('foto'); ?>">
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end dropdown-menu-right" aria-labelledby="navbarScrollingDropdown">

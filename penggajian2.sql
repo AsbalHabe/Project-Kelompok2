@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 22, 2023 at 09:56 AM
+-- Generation Time: Dec 24, 2023 at 02:30 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `penggajian`
+-- Database: `penggajian2`
 --
 
 -- --------------------------------------------------------
@@ -108,6 +108,7 @@ CREATE TABLE `data_pegawai` (
   `id_pegawai` int(11) NOT NULL,
   `nik` varchar(50) NOT NULL,
   `nama_pegawai` varchar(225) NOT NULL,
+  `username` varchar(120) NOT NULL,
   `email` varchar(120) NOT NULL,
   `password` varchar(120) NOT NULL,
   `jenis_kelamin` varchar(25) NOT NULL,
@@ -115,20 +116,17 @@ CREATE TABLE `data_pegawai` (
   `tanggal_masuk` date NOT NULL,
   `status` varchar(60) NOT NULL,
   `foto` varchar(225) NOT NULL,
-  `role` int(11) NOT NULL
+  `hak_akses` int(11) NOT NULL,
+  `is_active` int(11) NOT NULL,
+  `tanggal_input` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `data_pegawai`
 --
 
-INSERT INTO `data_pegawai` (`id_pegawai`, `nik`, `nama_pegawai`, `email`, `password`, `jenis_kelamin`, `jabatan`, `tanggal_masuk`, `status`, `foto`, `role`) VALUES
-(18, '12345', 'Muhammad Wendy Martadiansyah', '', '827ccb0eea8a706c4c34a16891f84e7b', 'Laki-laki', 'Ceo', '2020-03-02', 'Pegawai Tetap', '', 0),
-(19, '123456', 'Najdah Ibtisamah Safira Alifah', '', '', 'Perempuan', 'Staff', '2022-01-03', 'Pegawai Tidak Tetap', '', 2),
-(20, '1212', 'Ryan Alfaret Hidayah', '', '', 'Laki-laki', 'IT Developer', '2023-01-09', 'Pegawai Tetap', '', 0),
-(21, '124589001', 'Refy Fitriani Saputri', '', '', 'Perempuan', 'Admin', '2023-06-05', 'Pegawai Tetap', '', 1),
-(22, '12121', 'Irsyad Amien', '', 'd9b1d7db4cd6e70935368a1efb10e377', 'Laki-laki', 'IT Developer', '2023-05-08', 'Pegawai Tetap', '', 2),
-(23, '1212121', 'Alfie Hamzami ', 'alfieH', 'e10adc3949ba59abbe56e057f20f883e', 'Laki-laki', 'Dokter', '2023-01-09', 'Pegawai Tetap', '', 2);
+INSERT INTO `data_pegawai` (`id_pegawai`, `nik`, `nama_pegawai`, `username`, `email`, `password`, `jenis_kelamin`, `jabatan`, `tanggal_masuk`, `status`, `foto`, `hak_akses`, `is_active`, `tanggal_input`) VALUES
+(37, '12', 'reza', 'reza', 'reza12@gmail.com', '$2y$10$ecOq.vUgYQ4Dy9DiVRMege9uYRN.eOs2jEqTkpIrdbZWMm0.oyXNG', 'Laki-laki', 'IT Developer', '2023-12-24', 'Pegawai Tetap', '', 1, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -201,7 +199,7 @@ CREATE TABLE `user` (
   `email` varchar(126) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   `image` varchar(126) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   `password` varchar(256) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
-  `role_id` int(11) NOT NULL,
+  `hak_akses` int(11) NOT NULL,
   `is_active` int(1) NOT NULL,
   `tanggal_input` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -210,11 +208,12 @@ CREATE TABLE `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `nama`, `email`, `image`, `password`, `role_id`, `is_active`, `tanggal_input`) VALUES
+INSERT INTO `user` (`id`, `nama`, `email`, `image`, `password`, `hak_akses`, `is_active`, `tanggal_input`) VALUES
 (2, 'Ryan alfaret hidayah', 'ryanalfareth@gmail.com', 'pro1700544701.png', '$2y$10$JYfJAvYRGrVahg69WB33z.RdjrRMoFkxAjqjrfwYC9eFjo0.3H00u', 2, 1, 1700540437),
 (3, 'wendy', 'wendy123@gmail.com', 'default.jpg', '$2y$10$2dNTX/xeQpDlOr6fr5NWyOOC4wDLy6sPJHQfr/IJQwUVbWd/o2yai', 2, 0, 1702471920),
 (4, 'Muhammad Wendy', 'wendy.martadiandsyah75@gmail.com', 'default.jpg', '$2y$10$lHd1GvKTTIwmUCPI1Zi6p./MtXUX9F7SGxvX6tGkFY98boqjzdA3G', 1, 1, 1702635137),
-(5, 'wend', 'martadiansyah89@gmail.com', 'default.jpg', '$2y$10$f/vX3hieuAaY0Z0NB3q2Uei6aFq9zv/0NuE7jcBlAEgGdSJwWu6z.', 1, 1, 1702643830);
+(5, 'wend', 'martadiansyah89@gmail.com', 'default.jpg', '$2y$10$f/vX3hieuAaY0Z0NB3q2Uei6aFq9zv/0NuE7jcBlAEgGdSJwWu6z.', 1, 1, 1702643830),
+(6, 'Muhammad Wendy Martadiansyah', '19220300@bsi.ac.id', 'default.jpg', '$2y$10$loISv2C1VO2wU4LwHJNpketRKcqzS7N7Wv/nDLsvhTz3hHc.sXEva', 1, 1, 1703424339);
 
 --
 -- Indexes for dumped tables
@@ -294,7 +293,7 @@ ALTER TABLE `data_kehadiran`
 -- AUTO_INCREMENT for table `data_pegawai`
 --
 ALTER TABLE `data_pegawai`
-  MODIFY `id_pegawai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id_pegawai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT for table `pengumuman`
@@ -318,7 +317,7 @@ ALTER TABLE `role`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -10,23 +10,6 @@
         <div style="position: relative;">
             <img src="<?php echo base_url('assets/img/backgrounds/bg1.png'); ?>" style="width: 100%; height: auto;">
             <div class="text-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(0,0,0,0.7), rgba(0,0,0,0.7); color: black; padding: 20px;">
-                <?php
-                date_default_timezone_set('Asia/Jakarta');
-
-                $waktu_sekarang = date('H:i');
-
-                echo '<marquee behavior="scroll" direction="left">';
-                if (strtotime($waktu_sekarang) >= strtotime('06:00') && strtotime($waktu_sekarang) < strtotime('10:00')) {
-                    echo '<span style="font-size: 24px;">Selamat Pagi</span>';
-                } elseif (strtotime($waktu_sekarang) >= strtotime('10:00') && strtotime($waktu_sekarang) < strtotime('15:00')) {
-                    echo '<span style="font-size: 24px;">Selamat Siang</span>';
-                } elseif (strtotime($waktu_sekarang) >= strtotime('15:00') && strtotime($waktu_sekarang) < strtotime('18:00')) {
-                    echo '<span style="font-size: 24px;">Selamat Sore</span>';
-                } elseif (strtotime($waktu_sekarang) >= strtotime('18:00') && strtotime($waktu_sekarang) < strtotime('24:00')) {
-                    echo '<span style="font-size: 24px;">Selamat Malam</span>';
-                }
-                echo '</marquee>';
-                ?>
             </div>
             </nav>
         </div>
