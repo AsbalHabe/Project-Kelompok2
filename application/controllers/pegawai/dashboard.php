@@ -13,10 +13,10 @@ class Dashboard extends CI_Controller
         $data['admin'] = $admin->num_rows();
         $data['jabatan'] = $jabatan->num_rows();
         $data['kehadiran'] = $kehadiran->num_rows();
-        $this->load->view('template_user/header_user',$data);
-        $this->load->view('template_user/sidebar_user');
-        $this->load->view('user/dashboard',$data);
-        $this->load->view('template_user/footer_user');
+        $this->load->view('template_pegawai/header_pegawai',$data);
+        $this->load->view('template_pegawai/sidebar_pegawai');
+        $this->load->view('pegawai/dashboard',$data);
+        $this->load->view('template_pegawai/footer_pegawai');
     }
 
 }

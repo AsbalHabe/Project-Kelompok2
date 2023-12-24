@@ -36,7 +36,7 @@ class Autentifikasi extends CI_Controller
                             redirect('admin/dashboard');
                             break;
                         case 2:
-                            redirect('user/dashboard');
+                            redirect('pegawai/dashboard');
                             break;
                         default:
                             redirect('autentifikasi');

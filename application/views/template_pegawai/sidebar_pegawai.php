@@ -17,7 +17,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item ">
-                <a class="nav-link" href="<?php echo base_url('admin/dashboard') ?>">
+                <a class="nav-link" href="<?php echo base_url('pegawai/dashboard') ?>">
                     <i class="fas fa-fw fa-bell"></i>
                     <span class="text-white">Dashboard</span></a>
             </li>
@@ -43,30 +43,12 @@
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="<?php echo base_url('admin/dataPegawai') ?>">Data Pegawai</a>
-                        <a class="collapse-item" href="<?php echo base_url('admin/dataJabatan') ?>">Data Jabatan</a>
+                        <a class="collapse-item" href="<?php echo base_url('pegawai/dataPegawai') ?>">Data Pegawai</a>
                     </div>
                 </div>
             </li>
 
             <hr class="sidebar-divider my-0">
-
-
-            <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-                    <i class="fas fa-fw fa-money-check-alt"></i>
-                    <span class="text-white">Transaksi</span>
-                </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="<?php echo base_url('admin/dataAbsensi') ?>">Data Absensi</a>
-                        <a class="collapse-item" href="<?php echo base_url('admin/potonganGaji') ?>">Setingan Potongan
-                            Gaji</a>
-                        <a class="collapse-item" href="<?php echo base_url('admin/dataPenggajian') ?>">Data Gaji</a>
-                    </div>
-                </div>
-            </li>
 
             <hr class="sidebar-divider my-0">
 
@@ -78,10 +60,7 @@
                 </a>
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="<?php echo base_url('admin/laporanGaji') ?>">Laporan Gaji</a>
-                        <a class="collapse-item" href="<?php echo base_url('admin/laporanAbsensi') ?>">Laporan
-                            Absensi</a>
-                        <a class="collapse-item" href="<?php echo base_url('admin/slip_gaji') ?>">Slip Gaji</a>
+                        <a class="collapse-item" href="<?php echo base_url('pegawai/slipgaji') ?>">Slip Gaji</a>
                     </div>
                 </div>
             </li>

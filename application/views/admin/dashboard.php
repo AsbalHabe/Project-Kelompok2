@@ -8,7 +8,7 @@
     <!-- Image Card -->
     <div class="card mb-2 border border-dark" style="box-shadow: -5px 5px 5px 0px rgba(143,143,143,0.73);">
         <div style="position: relative;">
-            <img src="<?php echo base_url('assets/img/backgrounds/bg1.png'); ?>" style="width: 100%; height: auto;">
+            <img src="<?php echo base_url('assets/img/backgrounds/bgmecon.png'); ?>" style="width: 100%; height: auto;">
             <div class="text-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(0,0,0,0.7), rgba(0,0,0,0.7); color: black; padding: 20px;">
             </div>
             </nav>
