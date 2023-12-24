@@ -164,12 +164,12 @@
                         </li>
                         <div class="topbar-divider d-none d-sm-block"></div>
                         <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <?php echo isset($_SESSION['email']) ? $_SESSION['email'] : '' ?>
-                                <i class="fa fa-fw fa-chevron-down"></i>
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Selamat Datang <?= $this->session->userdata('nama_pegawai'); ?></span>
+                                <img class="img-profile rounded-circle" src="<?= base_url('assets/foto/') . $this->session->userdata('foto'); ?>">
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end dropdown-menu-right" aria-labelledby="navbarScrollingDropdown">
-                                <li><a class="dropdown-item" href="<?= base_url('user'); ?>">Profile Saya</a></li>
+                                <li><a class="dropdown-item" href="<?= base_url('user/index'); ?>">Profile Saya</a></li>
                                 <li><a class="dropdown-item" href="<?php echo base_url('autentifikasi/logout') ?>" onclick="return confirm('Yakin logout?')">Logout</a></li>
                             </ul>
                         </li>

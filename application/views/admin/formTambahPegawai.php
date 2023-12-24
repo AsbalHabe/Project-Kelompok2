@@ -14,7 +14,7 @@
                 <div class="form-group">
                     <label>NIK</label>
                     <input type="number" name="nik" class="form-control">
-                    <?php echo form_error('nik', '<div class="text-small text-danger">', '</div>'); ?>
+                    <?php echo form_error('nik', '<div class="text-small text-danger"></div>') ?>
                 </div>
 
                 <div class="form-group">
@@ -25,8 +25,14 @@
 
                 <div class="form-group">
                     <label>Username</label>
-                    <input type="text" name="email" class="form-control">
-                    <?php echo form_error('email', '<div class="text-small text-danger"></div>') ?>
+                    <input type="text" name="username" class="form-control">
+                    <?php echo form_error('username', '<div class="text-small text-danger"></div>') ?>
+                </div>
+
+                <div class="form-group">
+                    <label>email</label>
+                    <input type="text" class="form-control form-control-user" id="email" name="email" placeholder="Alamat Email" value="<?= set_value('email'); ?>">
+                    <?= form_error('email', '<small class="text-danger pl-3">', '</small>'); ?>
                 </div>
 
                 <div class="form-group">
@@ -79,7 +85,7 @@
 
                 <div class="form-group">
                     <label>Hak Akses</label>
-                    <select name="role" id="" class="form-control">
+                    <select name="hak_akses" id="" class="form-control">
                         <option value="">---Pilih Hak Akses---</option>
                         <option value="1">Admin</option>
                         <option value="2">Pegawai</option>

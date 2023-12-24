@@ -38,7 +38,7 @@
             <!-- /Logo -->
 
             <?= $this->session->flashdata('pesan'); ?>
-            
+
             <form class="user" method="post" action="<?= base_url('autentifikasi/login'); ?>">
               <div class="form-group my-2">
                 <input type="text" class="form-control form-control-user" value="<?= set_value('email'); ?>" id="email" placeholder="Masukkan Alamat Email" name="email">

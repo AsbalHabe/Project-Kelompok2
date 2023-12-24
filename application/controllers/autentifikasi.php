@@ -18,18 +18,20 @@ class Autentifikasi extends CI_Controller
         $email = htmlspecialchars($this->input->post('email', true));
         $password = $this->input->post('password', true);
 
-        $user = $this->PenggajianModel->cekData(['email' => $email])->row_array();
+        $pegawai = $this->PenggajianModel->get_pegawai_by_email($email);
 
-        if ($user) {
-            if ($user['is_active'] == 1) {
-                if (password_verify($password, $user['password'])) {
+        if ($pegawai) {
+            if ($pegawai->is_active == 1) {
+                if (password_verify($password, $pegawai->password)) {
                     $data = [
-                        'email' => $user['email'],
-                        'role_id' => $user['role_id']
+                        'email' => $pegawai->email,
+                        'hak_akses' => $pegawai->hak_akses,
+                        'nama_pegawai' => $pegawai->nama_pegawai
+                        // Tambahkan data lain yang ingin disimpan di sesi
                     ];
                     $this->session->set_userdata($data);
 
-                    switch ($user['role_id']) {
+                    switch ($pegawai->hak_akses) {
                         case 1:
                             redirect('admin/dashboard');
                             break;
@@ -53,6 +55,9 @@ class Autentifikasi extends CI_Controller
             redirect('autentifikasi');
         }
     }
+
+    // ... (fungsi lainnya tetap sama)
+
 
     public function blok()
     {
@@ -118,7 +123,7 @@ class Autentifikasi extends CI_Controller
                 'email' => htmlspecialchars($email),
                 'image' => 'default.jpg',
                 'password' => password_hash($this->input->post('password1'), PASSWORD_DEFAULT),
-                'role_id' => 2,
+                'hak_akses' => 1,
                 'is_active' => 1,
                 'tanggal_input' => time()
             ];
@@ -132,7 +137,7 @@ class Autentifikasi extends CI_Controller
     public function logout()
     {
         $this->session->unset_userdata('email');
-        $this->session->unset_userdata('role_id');
+        $this->session->unset_userdata('hak_akses');
         $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-message" role="alert">Anda telah logout!!</div>');
         redirect('autentifikasi');
     }

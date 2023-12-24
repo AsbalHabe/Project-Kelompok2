@@ -12,6 +12,12 @@
             <?php foreach ($pegawai as $p) : ?>
 
                 <form action="<?= base_url('admin/dataPegawai/updateDataAksi') ?>" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="">NIK</label>
+                        <input type="hidden" name="id_pegawai" value="<?= $p->id_pegawai; ?>">
+                        <input type="number" name="nik" class="form-control" value="<?= $p->nik; ?>">
+                        <?= form_error('nik', '<div class="text-small text-danger">', '</div>') ?>
+                    </div>
 
                     <div class="form-group">
                         <label for="">Nama Pegawai</label>
@@ -21,9 +27,17 @@
 
                     <div class="form-group">
                         <label for="">Username</label>
-                        <input type="text" name="username" class="form-control" value="<?= $p->email; ?>">
+                        <input type="text" name="username" class="form-control" value="<?= $p->username; ?>">
+                        <?= form_error('username', '<div class="text-small text-danger">', '</div>') ?>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="">email</label>
+                        <input type="text" name="email" class="form-control" value="<?= $p->email; ?>">
                         <?= form_error('email', '<div class="text-small text-danger">', '</div>') ?>
                     </div>
+
+
 
                     <div class="form-group">
                         <label for="">Password</label>
@@ -76,9 +90,9 @@
 
                     <div class="form-group">
                         <label for="">Hak Akses</label>
-                        <select name="role" id="" class="form-control">
-                            <option value="<?= $p->role; ?>">
-                                <?php if ($p->role == '1') echo "Admin";
+                        <select name="hak_akses" id="" class="form-control">
+                            <option value="<?= $p->hak_akses; ?>">
+                                <?php if ($p->hak_akses == '1') echo "Admin";
                                 else echo "Pegawai";
                                 ?>
                             </option>

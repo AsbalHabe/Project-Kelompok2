@@ -13,7 +13,9 @@ class User extends CI_Controller
     public function index()
     {
         $data['title'] = 'Profil Saya';
-        $data['user'] = $this->PenggajianModel->cekData(['email' => $this->session->userdata('email')])->row_array();
+        $id = $this->session->userdata('nik');
+        $data['pegawai'] = $this->db->query("SELECT * FROM data_pegawai WHERE nik='$id'")->result();
+        $data['user'] = $this->PenggajianModel->cekData(['nama' => $this->session->userdata('nama')])->row_array();
 
         $this->load->view('template_admin/header_admin', $data);
         $this->load->view('template_admin/sidebar_admin', $data);
@@ -24,7 +26,7 @@ class User extends CI_Controller
     public function ubahProfile()
     {
         $data['judul'] = 'Ubah Profile';
-        $data['user'] = $this->PenggajianModel->cekData(['email' => $this->session->userdata('email')])->row_array();
+        $data['user'] = $this->PenggajianModel->cekData(['nama' => $this->session->userdata('nama')])->row_array();
 
         $this->form_validation->set_rules('nama', 'Nama Lengkap', 'required|trim', [
             'required' => 'Nama tidak Boleh Kosong'
@@ -37,7 +39,7 @@ class User extends CI_Controller
             $this->load->view('template_admin/footer_admin');
         } else {
             $nama = $this->input->post('nama', true);
-            $email = $this->input->post('email', true);
+            $nama = $this->input->post('nama', true);
 
             // Upload image logic
             $upload_image = $this->upload_image('image', 'pro' . time());
@@ -48,18 +50,18 @@ class User extends CI_Controller
             }
 
             $this->db->set('nama', $nama);
-            $this->db->where('email', $email);
+            $this->db->where('nama', $nama);
             $this->db->update('user');
 
             $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-message" role="alert">Profil Berhasil diubah </div>');
-            redirect('user');
+            redirect('user/index');
         }
     }
 
     public function edit()
     {
         $data['judul'] = 'Ubah Profil';
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['user'] = $this->db->get_where('user', ['nama' => $this->session->userdata('nama')])->row_array();
 
         $this->form_validation->set_rules('nama', 'Nama Lengkap', 'required');
 
@@ -70,7 +72,7 @@ class User extends CI_Controller
             $this->load->view('template_admin/footer_admin');
         } else {
             $nama = $this->input->post('nama', true);
-            $email = $this->input->post('email', true);
+            $nama = $this->input->post('nama', true);
 
             $userProfile = $this->upload_image('image', 'user' . $data['user']['nama']);
 
@@ -80,7 +82,7 @@ class User extends CI_Controller
             }
 
             $this->db->set('nama', $nama);
-            $this->db->where('email', $email);
+            $this->db->where('nama', $nama);
             $this->db->update('user');
 
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data telah tersimpan!</div>');
@@ -91,7 +93,7 @@ class User extends CI_Controller
     public function ubahPassword()
     {
         $data['judul'] = 'Ubah Password';
-        $data['user'] = $this->PenggajianModel->cekData(['email' => $this->session->userdata('email')])->row_array();
+        $data['user'] = $this->PenggajianModel->cekData(['nama' => $this->session->userdata('nama')])->row_array();
 
         $this->form_validation->set_rules('password_sekarang', 'Password Saat ini', 'required|trim', [
             'required' => 'Password saat ini harus diisi'
@@ -139,7 +141,7 @@ class User extends CI_Controller
                     //password ok
                     $password_hash = password_hash($pwd_baru, PASSWORD_DEFAULT);
                     $this->db->set('password', $password_hash);
-                    $this->db->where('email', $this->session->userdata('email'));
+                    $this->db->where('nama', $this->session->userdata('nama'));
                     $this->db->update('user');
 
                     $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-message" role="alert">Password Berhasil diubah</div>');

@@ -45,7 +45,7 @@
                 <td><?php echo $p->tanggal_masuk ?></td>
                 <td><?php echo $p->status ?></td>
                 <td><img src="<?php echo base_url() . 'assets/Foto/' . $p->foto ?>" width="75px"></td>
-                <?php if ($p->role == '1') { ?>
+                <?php if ($p->hak_akses == '1') { ?>
                     <td>Admin</td>
                 <?php } else { ?>
                     <td>Pegawai</td>

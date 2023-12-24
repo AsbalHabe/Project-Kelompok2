@@ -7,9 +7,9 @@
         <div class="col-lg-8">
             <?= form_open_multipart('user/edit'); ?>
             <div class="form-group row">
-                <label for="email" class="col-sm-3 col-form-label">Email</label>
+                <label for="username" class="col-sm-3 col-form-label">username</label>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" id="inputEmail13" name="email" value="<?= $user['email']; ?>" readonly>
+                    <input type="text" class="form-control" id="inputEmail13" name="username" value="<?= $user['username']; ?>" readonly>
                 </div>
             </div>
             <div class="form-group row">
