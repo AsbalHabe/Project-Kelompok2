@@ -1,3 +1,4 @@
+
 <!-- Begin Page Content -->
 <div class="container-fluid">
 
@@ -25,12 +26,12 @@
             <th class="text-center">No</th>
             <th class="text-center">Nik</th>
             <th class="text-center">Nama Pegawai</th>
+            <th class="text-center">Nomor Telepon</th>
             <th class="text-center">Jenis Kelamin</th>
             <th class="text-center">Jabatan</th>
             <th class="text-center">Tanggal Masuk</th>
             <th class="text-center">Status</th>
             <th class="text-center">Photo</th>
-            <th class="text-center">Hak Akses</th>
             <th class="text-center">Action</th>
         </tr>
 
@@ -40,21 +41,17 @@
                 <td><?php echo $no++ ?></td>
                 <td><?php echo $p->nik ?></td>
                 <td><?php echo $p->nama_pegawai ?></td>
+                <td><?php echo $p->no_telepon ?></td>
                 <td><?php echo $p->jenis_kelamin ?></td>
                 <td><?php echo $p->jabatan ?></td>
                 <td><?php echo $p->tanggal_masuk ?></td>
                 <td><?php echo $p->status ?></td>
                 <td><img src="<?php echo base_url() . 'assets/Foto/' . $p->foto ?>" width="75px"></td>
-                <?php if ($p->hak_akses == '1') { ?>
-                    <td>Admin</td>
-                <?php } else { ?>
-                    <td>Pegawai</td>
-                <?php } ?>
 
                 <td>
                     <div class="text-center">
-                        <a class="btn btn-sm btn-primary" href="<?php echo base_url('admin/dataPegawai/updateData/' . $p->nik); ?>"><i class="fas fa-edit"></i></a>
-                        <a onclick="return confirm('Yakin Hapus?')" class="btn btn-sm btn-danger" href="<?php echo base_url('admin/dataPegawai/deleteData/' . $p->nik); ?>"><i class="fas fa-trash"></i></a>
+                        <a class="btn btn-sm btn-primary" href="<?php echo base_url('admin/dataPegawai/updateData/' . $p->id_pegawai); ?>"><i class="fas fa-edit"></i></a>
+                        <a onclick="return confirm('Yakin Hapus?')" class="btn btn-sm btn-danger" href="<?php echo base_url('admin/dataPegawai/deleteData/' . $p->id_pegawai); ?>"><i class="fas fa-trash"></i></a>
                     </div>
                 </td>
 

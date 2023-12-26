@@ -24,21 +24,15 @@
                 </div>
 
                 <div class="form-group">
-                    <label>Username</label>
-                    <input type="text" name="username" class="form-control">
-                    <?php echo form_error('username', '<div class="text-small text-danger"></div>') ?>
+                    <label>Nomor Telepon</label>
+                        <input type="number" name="no_telepon" class="form-control">
+                        <?php echo form_error('no_telepon', '<div class="text-small text-danger"></div>') ?>
                 </div>
 
                 <div class="form-group">
-                    <label>email</label>
-                    <input type="text" class="form-control form-control-user" id="email" name="email" placeholder="Alamat Email" value="<?= set_value('email'); ?>">
-                    <?= form_error('email', '<small class="text-danger pl-3">', '</small>'); ?>
-                </div>
-
-                <div class="form-group">
-                    <label for="">Password</label>
-                    <input type="password" name="password" class="form-control">
-                    <?= form_error('password', '<div class="text-small text-danger">', '</div>') ?>
+                    <label>Alamat</label>
+                    <input type="text" class="form-control form-control-user" id="alamat" name="alamat" placeholder="Alamat Alamat" value="<?= set_value('Alamat'); ?>">
+                    <?= form_error('alamat', '<small class="text-danger pl-3">', '</small>'); ?>
                 </div>
 
                 <div class="form-group">
@@ -83,14 +77,6 @@
                     <input type="file" name="foto" class="form-control">
                 </div>
 
-                <div class="form-group">
-                    <label>Hak Akses</label>
-                    <select name="hak_akses" id="" class="form-control">
-                        <option value="">---Pilih Hak Akses---</option>
-                        <option value="1">Admin</option>
-                        <option value="2">Pegawai</option>
-                    </select>
-                </div>
 
                 <button type="submit" class="btn btn-sm btn-primary">Simpan data</button>
 

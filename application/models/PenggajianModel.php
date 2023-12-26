@@ -13,15 +13,6 @@ class PenggajianModel extends CI_Model
         return $this->db->insert_id();
     }
 
-    public function get_all_pegawai_email()
-    {
-        return $this->db->select('email')->get('data_pegawai')->result_array();
-    }
-
-    public function get_pegawai_by_email($email)
-    {
-        return $this->db->get_where('data_pegawai', ['email' => $email])->row();
-    }
 
     public function update_data($table, $data, $where)
     {
@@ -60,5 +51,12 @@ class PenggajianModel extends CI_Model
     {
         // Ambil data dengan batasan dan offset untuk fitur paginasi
         return $this->db->get($table, $limit, $offset);
+    }
+
+    public function isNikExists($nik)
+    {
+        $this->db->where('nik', $nik);
+        $query = $this->db->get('data_pegawai');
+        return $query->num_rows() > 0;
     }
 }

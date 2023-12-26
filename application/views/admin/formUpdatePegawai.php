@@ -1,3 +1,15 @@
+<style>
+    /* Gaya Input Readonly */
+    .readonly-input {
+        background-color: #f8f9fa;
+        /* Warna latar belakang input readonly */
+        color: #495057;
+        /* Warna teks input readonly */
+        cursor: not-allowed;
+        /* Kursor tidak bisa diubah saat hover */
+    }
+</style>
+
 <!-- Begin Page Content -->
 <div class="container-fluid">
 
@@ -13,11 +25,12 @@
 
                 <form action="<?= base_url('admin/dataPegawai/updateDataAksi') ?>" method="post" enctype="multipart/form-data">
                     <div class="form-group">
-                        <label for="">NIK</label>
+                        <label for="nik">NIK</label>
                         <input type="hidden" name="id_pegawai" value="<?= $p->id_pegawai; ?>">
-                        <input type="number" name="nik" class="form-control" value="<?= $p->nik; ?>">
+                        <input type="number" name="nik" id="nik" class="form-control readonly-input" value="<?= $p->nik; ?>" readonly>
                         <?= form_error('nik', '<div class="text-small text-danger">', '</div>') ?>
                     </div>
+
 
                     <div class="form-group">
                         <label for="">Nama Pegawai</label>
@@ -26,23 +39,15 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="">Username</label>
-                        <input type="text" name="username" class="form-control" value="<?= $p->username; ?>">
-                        <?= form_error('username', '<div class="text-small text-danger">', '</div>') ?>
+                        <label for="">Nomor Telepon</label>
+                        <input type="text" name="no_telepon" class="form-control" value="<?= $p->no_telepon; ?>">
+                        <?= form_error('nomor_telepon', '<div class="text-small text-danger">', '</div>') ?>
                     </div>
 
                     <div class="form-group">
-                        <label for="">email</label>
-                        <input type="text" name="email" class="form-control" value="<?= $p->email; ?>">
-                        <?= form_error('email', '<div class="text-small text-danger">', '</div>') ?>
-                    </div>
-
-
-
-                    <div class="form-group">
-                        <label for="">Password</label>
-                        <input type="password" name="password" class="form-control" value="<?= $p->password; ?>">
-                        <?= form_error('password', '<div class="text-small text-danger">', '</div>') ?>
+                        <label for="">Alamat</label>
+                        <input type="text" name="alamat" class="form-control" value="<?= $p->alamat; ?>">
+                        <?= form_error('alamat', '<div class="text-small text-danger">', '</div>') ?>
                     </div>
 
                     <div class="form-group">
@@ -87,22 +92,6 @@
                         <input type="file" name="foto" class="form-control" value="<?= $p->foto; ?>">
                         <?= form_error('foto', '<div class="text-small text-danger">', '</div>') ?>
                     </div>
-
-                    <div class="form-group">
-                        <label for="">Hak Akses</label>
-                        <select name="hak_akses" id="" class="form-control">
-                            <option value="<?= $p->hak_akses; ?>">
-                                <?php if ($p->hak_akses == '1') echo "Admin";
-                                else echo "Pegawai";
-                                ?>
-                            </option>
-                            <option value="1">Admin</option>
-                            <option value="2">Pegawai</option>
-                        </select>
-                    </div>
-
-
-
 
                     <button type="submit" class="btn btn-primary">Simpan</button>
 

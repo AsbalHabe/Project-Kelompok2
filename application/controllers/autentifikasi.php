@@ -13,34 +13,31 @@ class Autentifikasi extends CI_Controller
         $this->load->view('autentifikasi/login');
     }
 
-    public function login()
+    private function _login()
     {
         $email = htmlspecialchars($this->input->post('email', true));
         $password = $this->input->post('password', true);
+        $user = $this->PenggajianModel->cekData(['email' => $email])->row_array();
 
-        $pegawai = $this->PenggajianModel->get_pegawai_by_email($email);
-
-        if ($pegawai) {
-            if ($pegawai->is_active == 1) {
-                if (password_verify($password, $pegawai->password)) {
+        if ($user) {
+            if ($user['is_active'] == 1) {
+                if (password_verify($password, $user['password'])) {
                     $data = [
-                        'email' => $pegawai->email,
-                        'hak_akses' => $pegawai->hak_akses,
-                        'nama_pegawai' => $pegawai->nama_pegawai
-                        // Tambahkan data lain yang ingin disimpan di sesi
+                        'email' => $user['email'],
+                        'hak_akses' => $user['hak_akses']
                     ];
                     $this->session->set_userdata($data);
 
-                    switch ($pegawai->hak_akses) {
-                        case 1:
-                            redirect('admin/dashboard');
-                            break;
-                        case 2:
-                            redirect('pegawai/dashboard');
-                            break;
-                        default:
-                            redirect('autentifikasi');
-                            break;
+                    if ($user['hak_akses'] == 1) {
+                        redirect('admin');
+                    } else {
+                        if ($user['image'] == 'default.jpg') {
+                            $this->session->set_flashdata(
+                                'pesan',
+                                '<div class="alert alert-info alert-message" role="alert">Silahkan Ubah Profile Anda untuk Ubah Photo Profil</div>'
+                            );
+                        }
+                        redirect('admin/dashboard');
                     }
                 } else {
                     $this->session->set_flashdata('pesan', '<div class="alert alert-danger alert-message" role="alert">Password salah!!</div>');
@@ -55,6 +52,7 @@ class Autentifikasi extends CI_Controller
             redirect('autentifikasi');
         }
     }
+
 
     // ... (fungsi lainnya tetap sama)
 
