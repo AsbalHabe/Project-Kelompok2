@@ -12,10 +12,10 @@ class User extends CI_Controller
 
     public function index()
     {
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['title'] = 'Profil Saya';
         $id = $this->session->userdata('nik');
         $data['pegawai'] = $this->db->query("SELECT * FROM data_pegawai WHERE nik='$id'")->result();
-        $data['user'] = $this->PenggajianModel->cekData(['nama' => $this->session->userdata('nama')])->row_array();
 
         $this->load->view('template_admin/header_admin', $data);
         $this->load->view('template_admin/sidebar_admin', $data);

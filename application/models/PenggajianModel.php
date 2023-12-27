@@ -13,16 +13,26 @@ class PenggajianModel extends CI_Model
         return $this->db->insert_id();
     }
 
+    public function get_last_nik()
+    {
+        return $this->db->select('nik')
+            ->order_by('nik', 'DESC')
+            ->limit(1)
+            ->get('data_pegawai')
+            ->row_array();
+    }
 
     public function update_data($table, $data, $where)
     {
         $this->db->update($table, $data, $where);
+        return $this->db->affected_rows();
     }
 
     public function delete_data($where, $table)
     {
         $this->db->where($where);
         $this->db->delete($table);
+        return $this->db->affected_rows();
     }
 
     public function insert_batch($table = null, $data = array())
@@ -32,6 +42,7 @@ class PenggajianModel extends CI_Model
             $this->db->insert_batch($table, $data);
         }
     }
+
     public function simpanData($data = null)
     {
         $this->db->insert('user', $data);
@@ -55,8 +66,11 @@ class PenggajianModel extends CI_Model
 
     public function isNikExists($nik)
     {
-        $this->db->where('nik', $nik);
-        $query = $this->db->get('data_pegawai');
-        return $query->num_rows() > 0;
+        if (!empty($nik)) {
+            $this->db->where('nik', $nik);
+            $query = $this->db->get('data_pegawai');
+            return $query->num_rows() > 0;
+        }
+        return false;
     }
 }

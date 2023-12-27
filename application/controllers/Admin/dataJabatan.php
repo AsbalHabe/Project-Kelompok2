@@ -6,6 +6,7 @@ class DataJabatan extends CI_Controller
     {
         $data['title'] = "Data Jabatan";
         $data['jabatan'] = $this->PenggajianModel->get_data('data_jabatan')->result();
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $this->load->view('template_admin/header_admin', $data);
         $this->load->view('template_admin/sidebar_admin');
         $this->load->view('admin/dataJabatan', $data);

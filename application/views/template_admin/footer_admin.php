@@ -87,7 +87,7 @@
 </script>
 
 <script type="text/javascript">
-    // Area Chart Example
+    // Bar Chart Example
     var ctx = document.getElementById("myBarChart");
     var myBarChart = new Chart(ctx, {
         type: 'bar',
@@ -95,9 +95,12 @@
             labels: ["Laki - Laki", "Perempuan"],
             datasets: [{
                 label: "Berdasarkan Jenis Kelamin",
-                backgroundColor: 'rgb(23, 125, 255)',
-                borderColor: 'rgb(23, 125, 255)',
-                data: [<?php echo $this->db->query("select jenis_kelamin from data_pegawai where jenis_kelamin='Laki-laki'")->num_rows(); ?>,
+                backgroundColor: ['orange', 'green'], // Warna untuk Laki-laki dan Perempuan
+                borderColor: ['orange', 'green'],
+                hoverBackgroundColor: ['lightcoral', 'darkorange', 'lightgreen'], // Warna hover untuk "Berdasarkan Jenis Kelamin", Laki-laki, dan Perempuan
+                hoverBorderColor: ['black', 'black', 'black'],
+                data: [
+                    <?php echo $this->db->query("select jenis_kelamin from data_pegawai where jenis_kelamin='Laki-laki'")->num_rows(); ?>,
                     <?php echo $this->db->query("select jenis_kelamin from data_pegawai where jenis_kelamin='Perempuan'")->num_rows(); ?>,
                 ],
             }],
@@ -112,9 +115,11 @@
                     }
                 }]
             },
+
         }
     });
 </script>
+
 </body>
 
 </html>

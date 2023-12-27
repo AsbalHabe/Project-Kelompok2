@@ -5,6 +5,7 @@ class DataPenggajian extends CI_Controller
     public function index()
     {
         $data['title'] = "Data Gaji Pegawai";
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
     
         if ((isset($_GET['bulan']) && $_GET['bulan'] != '') && (isset($_GET['tahun']) &&
             $_GET['tahun'] != '')) {

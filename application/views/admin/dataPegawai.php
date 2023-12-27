@@ -1,4 +1,3 @@
-
 <!-- Begin Page Content -->
 <div class="container-fluid">
 
@@ -50,9 +49,10 @@
 
                 <td>
                     <div class="text-center">
-                        <a class="btn btn-sm btn-primary" href="<?php echo base_url('admin/dataPegawai/updateData/' . $p->id_pegawai); ?>"><i class="fas fa-edit"></i></a>
-                        <a onclick="return confirm('Yakin Hapus?')" class="btn btn-sm btn-danger" href="<?php echo base_url('admin/dataPegawai/deleteData/' . $p->id_pegawai); ?>"><i class="fas fa-trash"></i></a>
+                        <a class="btn btn-sm btn-primary" href="<?php echo base_url('admin/dataPegawai/updateData/' . $p->nik); ?>"><i class="fas fa-edit"></i></a>
+                        <a onclick="return confirm('Yakin Hapus?')" class="btn btn-sm btn-danger" href="<?php echo base_url('admin/dataPegawai/deleteData/' . $p->nik); ?>"><i class="fas fa-trash"></i></a>
                     </div>
+
                 </td>
 
             </tr>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 24, 2023 at 02:30 PM
+-- Generation Time: Dec 27, 2023 at 12:39 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -40,8 +40,7 @@ CREATE TABLE `announcement` (
 --
 
 INSERT INTO `announcement` (`id`, `judul`, `deskripsi`, `tanggal`, `date_created`) VALUES
-(24, 'Kenaikan gaji', 'Honor petugas dengan 2 tahun bekerja naik 0.1%', '2023-12-17', 1702942102),
-(25, 'Jam shift malam', 'Shift malam dimulai pukul 18.00 PM', '2023-12-18', 1702942164);
+(26, 'Gajian cuy', 'gajian', '2023-12-19', 1703595619);
 
 -- --------------------------------------------------------
 
@@ -86,18 +85,6 @@ CREATE TABLE `data_kehadiran` (
   `alfa` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `data_kehadiran`
---
-
-INSERT INTO `data_kehadiran` (`id_kehadiran`, `bulan`, `nik`, `nama_pegawai`, `jenis_kelamin`, `nama_jabatan`, `hadir`, `sakit`, `alfa`) VALUES
-(53, '122022', '12345', 'Muhammad Wendy Martadiansyah', 'Laki-laki', 'Ceo', 20, 0, 0),
-(54, '122023', '12345', 'Muhammad Wendy Martadiansyah', 'Laki-laki', 'Ceo', 25, 0, 0),
-(55, '122023', '123456', 'Najdah Ibtisamah Safira Alifah', 'Perempuan', 'Staff', 25, 0, 0),
-(56, '122023', '1212', 'Ryan Alfaret Hidayah', 'Laki-laki', 'IT Developer', 25, 0, 0),
-(57, '122022', '123456', 'Najdah Ibtisamah Safira Alifah', 'Perempuan', 'Staff', 23, 2, 5),
-(58, '122022', '1212', 'Ryan Alfaret Hidayah', 'Laki-laki', 'IT Developer', 20, 0, 0);
-
 -- --------------------------------------------------------
 
 --
@@ -108,25 +95,21 @@ CREATE TABLE `data_pegawai` (
   `id_pegawai` int(11) NOT NULL,
   `nik` varchar(50) NOT NULL,
   `nama_pegawai` varchar(225) NOT NULL,
-  `username` varchar(120) NOT NULL,
-  `email` varchar(120) NOT NULL,
-  `password` varchar(120) NOT NULL,
+  `no_telepon` varchar(120) NOT NULL,
+  `alamat` varchar(255) NOT NULL,
   `jenis_kelamin` varchar(25) NOT NULL,
   `jabatan` varchar(50) NOT NULL,
   `tanggal_masuk` date NOT NULL,
   `status` varchar(60) NOT NULL,
-  `foto` varchar(225) NOT NULL,
-  `hak_akses` int(11) NOT NULL,
-  `is_active` int(11) NOT NULL,
-  `tanggal_input` int(11) NOT NULL
+  `foto` varchar(225) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `data_pegawai`
 --
 
-INSERT INTO `data_pegawai` (`id_pegawai`, `nik`, `nama_pegawai`, `username`, `email`, `password`, `jenis_kelamin`, `jabatan`, `tanggal_masuk`, `status`, `foto`, `hak_akses`, `is_active`, `tanggal_input`) VALUES
-(37, '12', 'reza', 'reza', 'reza12@gmail.com', '$2y$10$ecOq.vUgYQ4Dy9DiVRMege9uYRN.eOs2jEqTkpIrdbZWMm0.oyXNG', 'Laki-laki', 'IT Developer', '2023-12-24', 'Pegawai Tetap', '', 1, 1, 0);
+INSERT INTO `data_pegawai` (`id_pegawai`, `nik`, `nama_pegawai`, `no_telepon`, `alamat`, `jenis_kelamin`, `jabatan`, `tanggal_masuk`, `status`, `foto`) VALUES
+(0, '3657', 'Muhammad Wendy Martadiansyah', '0895391063103', 'JL Raya puspitek serpong, gang salem 3', 'Laki-laki', 'IT Developer', '2023-12-26', 'Pegawai Tetap', 'th_(1).jpg');
 
 -- --------------------------------------------------------
 
@@ -196,7 +179,7 @@ INSERT INTO `role` (`id`, `role`, `hak_akses`) VALUES
 CREATE TABLE `user` (
   `id` int(11) NOT NULL,
   `nama` varchar(126) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
-  `email` varchar(126) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `email` varchar(120) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   `image` varchar(126) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   `password` varchar(256) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   `hak_akses` int(11) NOT NULL,
@@ -213,7 +196,12 @@ INSERT INTO `user` (`id`, `nama`, `email`, `image`, `password`, `hak_akses`, `is
 (3, 'wendy', 'wendy123@gmail.com', 'default.jpg', '$2y$10$2dNTX/xeQpDlOr6fr5NWyOOC4wDLy6sPJHQfr/IJQwUVbWd/o2yai', 2, 0, 1702471920),
 (4, 'Muhammad Wendy', 'wendy.martadiandsyah75@gmail.com', 'default.jpg', '$2y$10$lHd1GvKTTIwmUCPI1Zi6p./MtXUX9F7SGxvX6tGkFY98boqjzdA3G', 1, 1, 1702635137),
 (5, 'wend', 'martadiansyah89@gmail.com', 'default.jpg', '$2y$10$f/vX3hieuAaY0Z0NB3q2Uei6aFq9zv/0NuE7jcBlAEgGdSJwWu6z.', 1, 1, 1702643830),
-(6, 'Muhammad Wendy Martadiansyah', '19220300@bsi.ac.id', 'default.jpg', '$2y$10$loISv2C1VO2wU4LwHJNpketRKcqzS7N7Wv/nDLsvhTz3hHc.sXEva', 1, 1, 1703424339);
+(6, 'Muhammad Wendy Martadiansyah', '19220300@bsi.ac.id', 'default.jpg', '$2y$10$loISv2C1VO2wU4LwHJNpketRKcqzS7N7Wv/nDLsvhTz3hHc.sXEva', 1, 1, 1703424339),
+(7, 'Muhammad Wendy Martadiansyah', 'wendy.diansyah94@gmail.com', 'default.jpg', '$2y$10$Jx7BPdbxzFHAgRDbO9/1ze0IJM.PeDmNs7DEKOwhDV28uk4tlUU/u', 1, 1, 1703506425),
+(8, 'azri', 'azri123@gmail.com', 'default.jpg', '$2y$10$CD3dZe3J7yjulEF2JtSCNeKaBooMVdtf6.AVM/OHJCgJvX0fU4YNm', 1, 1, 1703507029),
+(9, 'pangad tampan', 'pangad123@gmail.com', 'anya.jpg', '$2y$10$fWa2Vea/g8ThFzDim8Il/O83XoWulFqfgYTtnv9gwJc/RGD9Yetnq', 1, 1, 1703507340),
+(10, 'Muhammad Wendy Martadiansyah', 'wendy94@gmail.com', 'default.jpg', '$2y$10$meCASMoCsmUz/iksvDE3yuwvX5GEAaM88PZN7DR6A81a.Wk.9LB6a', 2, 1, 1703514923),
+(11, 'Muhammad Wendy Martadiansyah', 'diansyah94@gmail.com', 'default.jpg', '$2y$10$uCzqt4aHAIWhUqJq.d9WneFhFaxq/9t6Z0h7LaUWoA3QpIMxe2aXq', 1, 1, 1703602603);
 
 --
 -- Indexes for dumped tables
@@ -241,7 +229,7 @@ ALTER TABLE `data_kehadiran`
 -- Indexes for table `data_pegawai`
 --
 ALTER TABLE `data_pegawai`
-  ADD PRIMARY KEY (`id_pegawai`);
+  ADD PRIMARY KEY (`nik`);
 
 --
 -- Indexes for table `pengumuman`
@@ -275,7 +263,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `announcement`
 --
 ALTER TABLE `announcement`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `data_jabatan`
@@ -287,13 +275,7 @@ ALTER TABLE `data_jabatan`
 -- AUTO_INCREMENT for table `data_kehadiran`
 --
 ALTER TABLE `data_kehadiran`
-  MODIFY `id_kehadiran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
-
---
--- AUTO_INCREMENT for table `data_pegawai`
---
-ALTER TABLE `data_pegawai`
-  MODIFY `id_pegawai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id_kehadiran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
 
 --
 -- AUTO_INCREMENT for table `pengumuman`
@@ -317,7 +299,7 @@ ALTER TABLE `role`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -7,7 +7,7 @@ class PotonganGaji extends CI_Controller
     {
         $data['title'] = "Setting Potongan Gaji";
         $data['pot_gaji'] = $this->PenggajianModel->get_data('potongan_gaji')->result();
-
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $this->load->view('template_admin/header_admin', $data);
         $this->load->view('template_admin/sidebar_admin');
         $this->load->view('admin/potonganGaji', $data);

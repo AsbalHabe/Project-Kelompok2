@@ -9,7 +9,7 @@
                 <div class="sidebar-brand-icon brg-li">
                     <i class="fas fa-hospital text-white"></i>
                 </div>
-                <div class="sidebar-brand-text text-light mx-3">MeCon</div>
+                <div class="sidebar-brand-text text-light mx-3">MECON</div>
             </a>
 
             <!-- Divider -->
@@ -106,7 +106,6 @@
 
         </ul>
         <!-- End of Sidebar -->
-
         <div id="content-wrapper" class="d-flex flex-column">
 
             <!-- Main Content -->
@@ -117,7 +116,7 @@
 
                     <h1 class="h3 mb-0 text-gray-800"></h1>
                     <div class="text-right text-gray-500">
-                        <p id="currentDateTime"></p>
+                        <p style="margin-bottom: 0px;" id="currentDateTime"></p>
                     </div>
                     <script>
                         function updateDateTime() {
@@ -138,7 +137,6 @@
                         updateDateTime();
                         setInterval(updateDateTime, 1000);
                     </script>
-
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -165,8 +163,8 @@
                         <div class="topbar-divider d-none d-sm-block"></div>
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <?php echo isset($_SESSION['nama']) ? $_SESSION['nama'] : '' ?>
-                                <i class="fa fa-fw fa-chevron-down"></i>
+                                <?= $user['nama'] ?>
+                                <i style="margin-left: 10px;" class="fa fa-fw fa-chevron-down"></i>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end dropdown-menu-right" aria-labelledby="navbarScrollingDropdown">
                                 <li><a class="dropdown-item" href="<?= base_url('user/index'); ?>">Profile Saya</a></li>

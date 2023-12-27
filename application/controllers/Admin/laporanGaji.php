@@ -6,6 +6,7 @@ class LaporanGaji extends CI_Controller
     public function index()
     {
         $data['title'] = "Laporan Gaji Pegawai";
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $this->load->view('template_admin/header_admin', $data);
         $this->load->view('template_admin/sidebar_admin');
         $this->load->view('admin/filterLaporanGaji');

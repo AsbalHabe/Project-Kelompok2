@@ -26,11 +26,10 @@
                 <form action="<?= base_url('admin/dataPegawai/updateDataAksi') ?>" method="post" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="nik">NIK</label>
-                        <input type="hidden" name="id_pegawai" value="<?= $p->id_pegawai; ?>">
-                        <input type="number" name="nik" id="nik" class="form-control readonly-input" value="<?= $p->nik; ?>" readonly>
+                        <input type="hidden" name="nik" value="<?= $p->nik; ?>">
+                        <input type="number" class="form-control readonly-input" value="<?= $p->nik; ?>" readonly>
                         <?= form_error('nik', '<div class="text-small text-danger">', '</div>') ?>
                     </div>
-
 
                     <div class="form-group">
                         <label for="">Nama Pegawai</label>
@@ -100,6 +99,5 @@
         </div>
 
     </div>
-
 
 </div>

@@ -6,6 +6,7 @@ class DataPegawai extends CI_Controller
     public function index()
     {
         $data['title'] = "Data Pegawai";
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $per_page = 10;
 
         $total_rows = $this->PenggajianModel->countData('data_pegawai');
@@ -43,21 +44,9 @@ class DataPegawai extends CI_Controller
         if ($this->form_validation->run() == FALSE) {
             $this->tambahData();
         } else {
-            $nik = $this->input->post('nik');
-
-            // Check if NIK already exists
-            if ($this->PenggajianModel->isNikExists($nik)) {
-                $this->session->set_flashdata('pesan', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    <strong>NIK sudah terpakai!</strong> Silakan gunakan NIK yang lain.
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>');
-                redirect('admin/dataPegawai');
-                return;  // Tambahkan return untuk keluar dari fungsi setelah melakukan redirect
-            }
-
-            // ... (lanjutkan seperti pada bagian sebelumnya)
+            $last_nik = $this->PenggajianModel->get_last_nik();
+            $last_nik_number = ($last_nik) ? $last_nik['nik'] : 0;
+            $nik = $last_nik_number + 1;
 
             $nama_pegawai = $this->input->post('nama_pegawai');
             $jenis_kelamin = $this->input->post('jenis_kelamin');
@@ -65,7 +54,7 @@ class DataPegawai extends CI_Controller
             $jabatan = $this->input->post('jabatan');
             $status = $this->input->post('status');
             $no_telepon = $this->input->post('no_telepon');
-            $alamat =  $this->input->post('alamat');
+            $alamat = $this->input->post('alamat');
             $foto = $_FILES['foto']['name'];
 
             if ($foto) {
@@ -81,13 +70,11 @@ class DataPegawai extends CI_Controller
                         </button>
                     </div>');
                     redirect('admin/dataPegawai');
-                    return;  // Tambahkan return untuk keluar dari fungsi setelah melakukan redirect
+                    return;
                 } else {
                     $foto = $this->upload->data('file_name');
                 }
             }
-
-            // ... (lanjutkan seperti pada bagian sebelumnya)
 
             $data = array(
                 'nik' => $nik,
@@ -97,7 +84,7 @@ class DataPegawai extends CI_Controller
                 'tanggal_masuk' => $tanggal_masuk,
                 'status' => $status,
                 'no_telepon' => $no_telepon,
-                'alamat'  => $alamat,
+                'alamat' => $alamat,
                 'foto' => $foto,
             );
 
@@ -112,12 +99,11 @@ class DataPegawai extends CI_Controller
         }
     }
 
-
-    public function updateData($id)
+    public function updateData($nik)
     {
         $data['title'] = "Update Data Pegawai";
         $data['jabatan'] = $this->PenggajianModel->get_data('data_jabatan')->result();
-        $data['pegawai'] = $this->db->query("SELECT * FROM data_pegawai WHERE id_pegawai = '$id'")->result();
+        $data['pegawai'] = $this->db->query("SELECT * FROM data_pegawai WHERE nik = '$nik'")->result();
         $this->load->view('template_admin/header_admin', $data);
         $this->load->view('template_admin/sidebar_admin');
         $this->load->view('admin/formUpdatePegawai', $data);
@@ -129,10 +115,10 @@ class DataPegawai extends CI_Controller
         $this->_rules();
 
         if ($this->form_validation->run() == FALSE) {
-            $id = $this->input->post('id_pegawai');
-            $this->updateData($id);
+            // Validasi form gagal, panggil fungsi updateData tanpa parameter $nik
+            $this->updateData();
         } else {
-            $id = $this->input->post('id_pegawai');
+            // Validasi form berhasil, dapatkan nilai NIK dari input form
             $nik = $this->input->post('nik');
             $nama_pegawai = $this->input->post('nama_pegawai');
             $jenis_kelamin = $this->input->post('jenis_kelamin');
@@ -140,17 +126,16 @@ class DataPegawai extends CI_Controller
             $jabatan = $this->input->post('jabatan');
             $status = $this->input->post('status');
             $no_telepon = $this->input->post('no_telepon');
-            $alamat =  $this->input->post('alamat');
+            $alamat = $this->input->post('alamat');
             $foto = $_FILES['foto']['name'];
 
             if ($foto) {
-                $config['upload_path'] = './assets/Foto';
+                $config['upload_path'] = './assets/foto';
                 $config['allowed_types'] = 'jpg|jpeg|png|tiff';
                 $this->load->library('upload', $config);
 
                 if ($this->upload->do_upload('foto')) {
                     $foto = $this->upload->data('file_name');
-                    $this->db->set('foto', $foto);
                 } else {
                     $this->session->set_flashdata('pesan', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
                         <strong>Gagal mengupload foto!</strong> Silakan coba lagi.
@@ -159,36 +144,38 @@ class DataPegawai extends CI_Controller
                         </button>
                     </div>');
                     redirect('admin/dataPegawai');
+                    return;
                 }
             }
 
             $data = array(
-                'nik' => $nik,
                 'nama_pegawai' => $nama_pegawai,
                 'jenis_kelamin' => $jenis_kelamin,
                 'jabatan' => $jabatan,
                 'tanggal_masuk' => $tanggal_masuk,
                 'status' => $status,
                 'no_telepon' => $no_telepon,
-                'alamat'  => $alamat,
+                'alamat' => $alamat,
+                'foto' => $foto,
             );
 
-            $where = array('id_pegawai' => $id);
+            $where = array('nik' => $nik);
 
             $this->PenggajianModel->update_data('data_pegawai', $data, $where);
             $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-dismissible fade show" role="alert">
-                <strong>Data berhasil diupdate</strong>
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>');
+            <strong>Data berhasil diupdate</strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>');
             redirect('admin/dataPegawai');
         }
     }
 
-    public function deleteData($id)
+
+    public function deleteData($nik)
     {
-        $where = array('id_pegawai' => $id);
+        $where = array('nik' => $nik);
         $this->PenggajianModel->delete_data($where, 'data_pegawai');
         $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-dismissible fade show" role="alert">
             <strong>Data berhasil dihapus</strong>
@@ -201,7 +188,7 @@ class DataPegawai extends CI_Controller
 
     public function _rules()
     {
-        $this->form_validation->set_rules('nik', 'NIK', 'required|numeric|is_unique[data_pegawai.nik]');
+        $this->form_validation->set_rules('nik', 'NIK', 'required|numeric');
         $this->form_validation->set_rules('nama_pegawai', 'Nama Pegawai', 'required');
         $this->form_validation->set_rules('jenis_kelamin', 'Jenis Kelamin', 'required');
         $this->form_validation->set_rules('tanggal_masuk', 'Tanggal Masuk', 'required');

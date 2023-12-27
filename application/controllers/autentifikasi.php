@@ -13,7 +13,7 @@ class Autentifikasi extends CI_Controller
         $this->load->view('autentifikasi/login');
     }
 
-    private function _login()
+    public function login()
     {
         $email = htmlspecialchars($this->input->post('email', true));
         $password = $this->input->post('password', true);
@@ -29,7 +29,7 @@ class Autentifikasi extends CI_Controller
                     $this->session->set_userdata($data);
 
                     if ($user['hak_akses'] == 1) {
-                        redirect('admin');
+                        redirect('admin/dashboard');
                     } else {
                         if ($user['image'] == 'default.jpg') {
                             $this->session->set_flashdata(
