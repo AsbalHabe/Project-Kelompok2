@@ -18,6 +18,13 @@
   <link rel="stylesheet" href="assets/vendor/css/pages/page-auth.css" />
   <script src="assets/vendor/js/helpers.js"></script>
   <script src="assets/js/config.js"></script>
+  <?php
+  $alert_message = $this->session->flashdata('alert_message');
+  if ($alert_message) {
+    echo '<script>alert("' . $alert_message . '");</script>';
+  }
+  ?>
+
 
   <!-- Content -->
 

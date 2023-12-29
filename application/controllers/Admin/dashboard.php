@@ -3,6 +3,17 @@
 class Dashboard extends CI_Controller
 {
 
+  public function __construct()
+  {
+    parent::__construct();
+    $this->load->library('session');
+
+    // Cek sesi pengguna atau kondisi lainnya
+    if (!$this->session->userdata('user_logged_in')) {
+      // Sesuai dengan kebutuhan Anda, bisa diarahkan ke halaman login atau halaman lain
+      redirect('autentifikasi'); // Ganti 'autentifikasi' dengan URL halaman yang diinginkan
+    }
+  }
 
   public function index()
   {

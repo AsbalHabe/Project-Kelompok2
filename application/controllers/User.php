@@ -23,47 +23,13 @@ class User extends CI_Controller
         $this->load->view('template_admin/footer_admin');
     }
 
-    public function ubahProfile()
-    {
-        $data['judul'] = 'Ubah Profile';
-        $data['user'] = $this->PenggajianModel->cekData(['nama' => $this->session->userdata('nama')])->row_array();
-
-        $this->form_validation->set_rules('nama', 'Nama Lengkap', 'required|trim', [
-            'required' => 'Nama tidak Boleh Kosong'
-        ]);
-
-        if ($this->form_validation->run() == false) {
-            $this->load->view('template_admin/header_admin', $data);
-            $this->load->view('template_admin/sidebar_admin', $data);
-            $this->load->view('user/ubahProfile', $data);
-            $this->load->view('template_admin/footer_admin');
-        } else {
-            $nama = $this->input->post('nama', true);
-            $nama = $this->input->post('nama', true);
-
-            // Upload image logic
-            $upload_image = $this->upload_image('image', 'pro' . time());
-
-            if ($upload_image) {
-                $this->delete_old_image($data['user']['image']);
-                $this->db->set('image', $upload_image);
-            }
-
-            $this->db->set('nama', $nama);
-            $this->db->where('nama', $nama);
-            $this->db->update('user');
-
-            $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-message" role="alert">Profil Berhasil diubah </div>');
-            redirect('user/index');
-        }
-    }
 
     public function edit()
     {
         $data['judul'] = 'Ubah Profil';
-        $data['user'] = $this->db->get_where('user', ['nama' => $this->session->userdata('nama')])->row_array();
 
         $this->form_validation->set_rules('nama', 'Nama Lengkap', 'required');
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
         if ($this->form_validation->run() == false) {
             $this->load->view('template_admin/header_admin', $data);

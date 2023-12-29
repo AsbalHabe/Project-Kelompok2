@@ -162,9 +162,9 @@
                         </li>
                         <div class="topbar-divider d-none d-sm-block"></div>
                         <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <?= $user['nama'] ?>
-                                <i style="margin-left: 10px;" class="fa fa-fw fa-chevron-down"></i>
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline text-warning small"> <b><span class="uhuyy"><?= $user['nama'] ?></span></b></b></span>
+                                <img class="img-profile rounded-circle" src="<?= base_url('assets/img/profile/') . $user['image']; ?>">
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end dropdown-menu-right" aria-labelledby="navbarScrollingDropdown">
                                 <li><a class="dropdown-item" href="<?= base_url('user/index'); ?>">Profile Saya</a></li>

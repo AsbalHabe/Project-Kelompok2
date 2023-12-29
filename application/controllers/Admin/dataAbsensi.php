@@ -86,6 +86,7 @@ class DataAbsensi extends CI_Controller
         INNER JOIN data_jabatan ON data_pegawai.jabatan=data_jabatan.nama_jabatan 
         WHERE NOT EXISTS (SELECT * FROM data_kehadiran WHERE bulan='$bulantahun' AND
         data_pegawai.nik=data_kehadiran.nik ) ORDER BY data_pegawai.nama_pegawai ASC")->result();
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $this->load->view('template_admin/header_admin', $data);
         $this->load->view('template_admin/sidebar_admin');
         $this->load->view('admin/formInputAbsensi', $data);

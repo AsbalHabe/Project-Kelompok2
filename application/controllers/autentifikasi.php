@@ -28,16 +28,14 @@ class Autentifikasi extends CI_Controller
                     ];
                     $this->session->set_userdata($data);
 
+                    // Pemeriksaan hak akses setelah login
                     if ($user['hak_akses'] == 1) {
                         redirect('admin/dashboard');
+                    } elseif ($user['hak_akses'] == 2) {
+                        redirect('autentifikasi/blok');
                     } else {
-                        if ($user['image'] == 'default.jpg') {
-                            $this->session->set_flashdata(
-                                'pesan',
-                                '<div class="alert alert-info alert-message" role="alert">Silahkan Ubah Profile Anda untuk Ubah Photo Profil</div>'
-                            );
-                        }
-                        redirect('admin/dashboard');
+                        // Redirect ke halaman lain jika hak akses tidak mencukupi
+                        redirect('error/unauthorized');
                     }
                 } else {
                     $this->session->set_flashdata('pesan', '<div class="alert alert-danger alert-message" role="alert">Password salah!!</div>');
@@ -54,11 +52,14 @@ class Autentifikasi extends CI_Controller
     }
 
 
+
     // ... (fungsi lainnya tetap sama)
 
 
     public function blok()
     {
+        $this->session->set_flashdata('alert_message', 'Silahkan ganti hak akses anda');
+
         $this->load->view('autentifikasi/blok');
     }
 
