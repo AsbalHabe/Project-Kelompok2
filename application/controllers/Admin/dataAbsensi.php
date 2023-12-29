@@ -6,7 +6,7 @@ class DataAbsensi extends CI_Controller
     {
         $data['title'] = "Data Absensi Pegawai";
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-
+        
         if ((isset($_GET['bulan']) && $_GET['bulan'] != '') && (isset($_GET['tahun']) &&
             $_GET['tahun'] != '')) {
             $bulan = $_GET['bulan'];
@@ -34,6 +34,8 @@ class DataAbsensi extends CI_Controller
 
     public function inputAbsensi()
     {
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        
         if($this->input->post('submit' , TRUE) == 'submit'){
 
             $post=$this->input->post();
