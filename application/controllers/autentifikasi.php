@@ -58,10 +58,10 @@ class Autentifikasi extends CI_Controller
 
     public function blok()
     {
-        $this->session->set_flashdata('alert_message', 'Silahkan ganti hak akses anda');
-
-        $this->load->view('autentifikasi/blok');
+        $this->session->set_flashdata('pesan', 'Akses tidak diizinkan. Silakan login kembali.');
+        redirect('autentifikasi');
     }
+    
 
     public function gagal()
     {

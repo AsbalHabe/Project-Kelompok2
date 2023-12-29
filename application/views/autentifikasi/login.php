@@ -19,7 +19,7 @@
   <script src="assets/vendor/js/helpers.js"></script>
   <script src="assets/js/config.js"></script>
   <?php
-  $alert_message = $this->session->flashdata('alert_message');
+  $alert_message = $this->session->flashdata('pesan');
   if ($alert_message) {
     echo '<script>alert("' . $alert_message . '");</script>';
   }

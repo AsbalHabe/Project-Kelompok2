@@ -68,7 +68,6 @@
             </div>
         </div>
     </div>
-
     
 
     <!-- Script untuk memastikan JavaScript Bootstrap berfungsi -->
