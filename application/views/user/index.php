@@ -17,6 +17,10 @@
                     <h5 style="text-align: center;" class="card-title mt-4">
                         <?= $user['nama'] ?></h5>
                 </div>
+                <div class="row-md-5" style="display: flex; justify-content: center; align-items: center; background: #FFF; width: 100%; height: 100%;">
+                    <a href="<?= base_url('user/edit'); ?>" class="btn btn-success" style="margin-right: 15px;"><i class=" fas fa-edit"></i>Edit Profile</a>
+                    <a href="<?= base_url('user/ubahPassword'); ?>" class="btn btn-primary"><i class="fas fa-lock-open"></i>Ubah Password</a>
+                </div>
             </div>
         </div>
 

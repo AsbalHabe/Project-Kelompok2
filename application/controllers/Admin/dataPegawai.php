@@ -30,6 +30,7 @@ class DataPegawai extends CI_Controller
     public function tambahData()
     {
         $data['title'] = "Tambah Data Pegawai";
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['jabatan'] = $this->PenggajianModel->get_data('data_jabatan')->result();
         $this->load->view('template_admin/header_admin', $data);
         $this->load->view('template_admin/sidebar_admin');
@@ -103,6 +104,7 @@ class DataPegawai extends CI_Controller
     {
         $data['title'] = "Update Data Pegawai";
         $data['jabatan'] = $this->PenggajianModel->get_data('data_jabatan')->result();
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['pegawai'] = $this->db->query("SELECT * FROM data_pegawai WHERE nik = '$nik'")->result();
         $this->load->view('template_admin/header_admin', $data);
         $this->load->view('template_admin/sidebar_admin');
