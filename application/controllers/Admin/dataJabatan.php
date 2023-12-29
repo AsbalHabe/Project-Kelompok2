@@ -16,7 +16,9 @@ class DataJabatan extends CI_Controller
     public function tambahData()
     {
         $data['title'] = "Tambah Data Jabatan";
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $this->load->view('template_admin/header_admin', $data);
+    
         $this->load->view('template_admin/sidebar_admin');
         $this->load->view('admin/tambahDataJabatan', $data);
         $this->load->view('template_admin/footer_admin');
@@ -56,6 +58,7 @@ class DataJabatan extends CI_Controller
     {
         $where = array('id_jabatan' => $id);
         $data['jabatan'] = $this->db->query("SELECT * FROM data_jabatan WHERE id_jabatan='$id'")->result();
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['title'] = "Update Data";
         $this->load->view('template_admin/header_admin', $data);
         $this->load->view('template_admin/sidebar_admin');

@@ -17,6 +17,7 @@ class PotonganGaji extends CI_Controller
     public function tambahData()
     {
         $data['title'] = "Tambah Jenis Potongan Gaji";
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $this->load->view('template_admin/header_admin', $data);
         $this->load->view('template_admin/sidebar_admin');
         $this->load->view('admin/formPotonganGaji', $data);
@@ -56,6 +57,7 @@ class PotonganGaji extends CI_Controller
         $data['pot_gaji'] = $this->db->query("SELECT * FROM potongan_gaji WHERE
         id='$id'")->result();
 
+$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $this->load->view('template_admin/header_admin', $data);
         $this->load->view('template_admin/sidebar_admin');
         $this->load->view('admin/updatePotonganGaji', $data);
