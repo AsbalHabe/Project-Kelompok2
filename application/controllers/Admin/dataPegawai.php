@@ -38,6 +38,25 @@ class DataPegawai extends CI_Controller
         $this->load->view('template_admin/footer_admin');
     }
 
+    public function check_unique_nik($nik)
+    {
+        $current_nik = $this->input->post('nik');
+
+        // Cek apakah NIK yang dimasukkan tidak sama dengan NIK saat ini
+        if ($current_nik != $nik) {
+            $existing_nik = $this->PenggajianModel->isNikExists($nik);
+
+            // Jika NIK digunakan oleh rekord lain, kembalikan FALSE
+            if ($existing_nik) {
+                $this->form_validation->set_message('check_unique_nik', 'NIK telah digunakan.');
+                return FALSE;
+            }
+        }
+
+        return TRUE;
+    }
+
+
     public function tambahDataAksi()
     {
         $this->_rules();
@@ -111,17 +130,17 @@ class DataPegawai extends CI_Controller
         $this->load->view('admin/formUpdatePegawai', $data);
         $this->load->view('template_admin/footer_admin');
     }
-
     public function updateDataAksi()
     {
         $this->_rules();
 
+        $nik = $this->input->post('nik');
+
         if ($this->form_validation->run() == FALSE) {
             // Validasi form gagal, panggil fungsi updateData tanpa parameter $nik
-            $this->updateData();
+            $this->updateData($nik);
         } else {
-            // Validasi form berhasil, dapatkan nilai NIK dari input form
-            $nik = $this->input->post('nik');
+            // Validasi form berhasil
             $nama_pegawai = $this->input->post('nama_pegawai');
             $jenis_kelamin = $this->input->post('jenis_kelamin');
             $tanggal_masuk = $this->input->post('tanggal_masuk');
@@ -173,6 +192,7 @@ class DataPegawai extends CI_Controller
             redirect('admin/dataPegawai');
         }
     }
+
 
 
     public function deleteData($nik)

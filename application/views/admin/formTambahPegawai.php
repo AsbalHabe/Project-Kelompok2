@@ -14,7 +14,7 @@
                 <div class="form-group">
                     <label>NIK</label>
                     <input type="number" name="nik" class="form-control">
-                    <?php echo form_error('nik', '<div class="text-small text-danger"></div>') ?>
+                    <?php echo form_error('nik', '<div class="text-danger">', '</div>'); ?>
                 </div>
 
                 <div class="form-group">
@@ -25,14 +25,14 @@
 
                 <div class="form-group">
                     <label>Nomor Telepon</label>
-                        <input type="number" name="no_telepon" class="form-control">
-                        <?php echo form_error('no_telepon', '<div class="text-small text-danger"></div>') ?>
+                    <input type="number" name="no_telepon" class="form-control">
+                    <?php echo form_error('no_telepon', '<div class="text-small text-danger"></div>') ?>
                 </div>
 
                 <div class="form-group">
                     <label>Alamat</label>
                     <input type="text" class="form-control form-control-user" id="alamat" name="alamat" placeholder="Alamat Alamat" value="<?= set_value('Alamat'); ?>">
-                    <?= form_error('alamat', '<small class="text-danger pl-3">', '</small>'); ?>
+                    <?= form_error('alamat', '<div class="text-small text-danger"></div>'); ?>
                 </div>
 
                 <div class="form-group">
