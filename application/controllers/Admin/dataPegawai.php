@@ -7,7 +7,7 @@ class DataPegawai extends CI_Controller
     {
         $data['title'] = "Data Pegawai";
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-        $per_page = 10;
+        $per_page = 3;
 
         $total_rows = $this->PenggajianModel->countData('data_pegawai');
         $total_pages = ceil($total_rows / $per_page);
@@ -216,5 +216,29 @@ class DataPegawai extends CI_Controller
         $this->form_validation->set_rules('tanggal_masuk', 'Tanggal Masuk', 'required');
         $this->form_validation->set_rules('jabatan', 'Jabatan', 'required');
         $this->form_validation->set_rules('status', 'Status', 'required');
+    }
+
+    public function search()
+    {
+        $keyword = $this->input->post('keyword');
+
+        // Perform the search using the model
+        $data['pegawai'] = $this->PenggajianModel->get_keyword($keyword);
+
+        // Check if the search is successful
+        $data['search_successful'] = ($data['pegawai']) ? true : false;
+
+        // Set flashdata based on the search result
+        if ($data['search_successful']) {
+            $this->session->set_flashdata('pesan', 'Data ditemukan');
+        } else {
+            $this->session->set_flashdata('pesan', 'Data tidak ditemukan');
+        }
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['title'] = "Data Pegawai";
+        $this->load->view('template_admin/header_admin', $data);
+        $this->load->view('template_admin/sidebar_admin');
+        $this->load->view('admin/dataPegawai', $data);
+        $this->load->view('template_admin/footer_admin');
     }
 }
