@@ -34,7 +34,7 @@
                             <td><?= $a['deskripsi']; ?></td>
                             <td>
                                 <a href="<?= base_url('admin/announcement/update/' . $a['id']); ?>" class="btn btn-success">
-                                    <i class="fas fa-pen-to-square" style="color: #ffffff;"></i>
+                                    <i class="fas fa-edit" style="color: #ffffff;"></i>
                                 </a>
                                 <a href="<?= base_url('admin/announcement/delete/' . $a['id']); ?>" class="btn btn-danger">
                                     <i class="fas fa-trash" style="color: #ffffff;"></i>

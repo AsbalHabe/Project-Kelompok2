@@ -6,10 +6,16 @@
         <!-- Sidebar -->
         <ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar" style="background: linear-gradient(45deg, #00274C, #0099FF); color: white;">
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-                <div class="sidebar-brand-icon brg-li">
-                    <i class="fas fa-hospital text-white"></i>
-                </div>
-                <div class="sidebar-brand-text text-light mx-3">MECON</div>
+            <div class="sidebar-brand-icon" style="margin-right: 7px;">
+            <?php
+            $logoPath = 'assets/img/logo/logo2.png';
+            if (file_exists($logoPath)) {
+                echo '<img src="' . base_url($logoPath) . '" alt="Logo" style="max-width: 100%; max-height: 50px;">';
+            } else {
+                echo 'Logo tidak ditemukan';
+            }
+            ?>
+        </div>
             </a>
 
             <!-- Divider -->
