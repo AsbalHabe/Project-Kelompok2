@@ -52,19 +52,15 @@
     var myPieChart = new Chart(ctx, {
         type: 'doughnut',
         data: {
-            labels: ["Dokter", "Staff", "Admin", "IT Developer", "Ceo"],
+            labels: ["Pegawai Tetap", "Pegawai Tidak Tetap"],
             datasets: [{
-                data: [
-                    <?php echo $this->db->query("select jabatan from data_pegawai where jabatan='Dokter'")->num_rows(); ?>,
-                    <?php echo $this->db->query("select jabatan from data_pegawai where jabatan='Staff'")->num_rows(); ?>,
-                    <?php echo $this->db->query("select jabatan from data_pegawai where jabatan='Admin'")->num_rows(); ?>,
-                    <?php echo $this->db->query("select jabatan from data_pegawai where jabatan='IT Developer'")->num_rows(); ?>,
-                    <?php echo $this->db->query("select jabatan from data_pegawai where jabatan='Ceo'")->num_rows(); ?>
+                data: [<?php echo $this->db->query("select status from data_pegawai where status='Pegawai Tetap'")->num_rows(); ?>,
+                    <?php echo $this->db->query("select status from data_pegawai where status='Pegawai Tidak Tetap'")->num_rows(); ?>,
                 ],
-                backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc', '#dddfeb', '#2e59d9'],
-                hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf', '#dddfeb', '#2e59d9'],
+                backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc', '#dddfeb'],
+                hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf', '#dddfeb'],
+                hoverBorderColor: "rgba(234, 236, 244, 1)",
             }],
-
         },
         options: {
             maintainAspectRatio: false,

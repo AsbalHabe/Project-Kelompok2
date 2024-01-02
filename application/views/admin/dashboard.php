@@ -40,7 +40,7 @@
     <div class="row" style="display: flex; justify-content: space-evenly;">
         <div class="col-xl-3 col-md-6 mb-4">
             <div class="card border border-dark" style="box-shadow: -5px 5px 5px 0px rgba(143,143,143,0.73); height: 250px; margin-bottom: 20px;">
-                <div class="card-header" style="background-color: orange; color: white; text-align: center;">
+                <div class="card-header" style="background-color: #AFDCF6; color: #000; text-align: center;">
                     Jumlah Pegawai
                 </div>
                 <div style="margin-top: 50px; text-align: center; font-size: 2.5em;">
@@ -54,7 +54,7 @@
 
         <div class="col-xl-3 col-md-6 mb-4">
             <div class="card border border-dark" style="box-shadow: -5px 5px 5px 0px rgba(143,143,143,0.73); height: 250px; margin-bottom: 20px;">
-                <div class="card-header" style="background-color: orange; color: white; text-align: center;">
+                <div class="card-header" style="background-color: #AFDCF6; color: #000; text-align: center;">
                     Data Jabatan
                 </div>
                 <div style="margin-top: 50px; text-align: center; font-size: 2.5em;">
@@ -68,7 +68,7 @@
 
         <div class="col-xl-3 col-md-6 mb-4">
             <div class="card border border-dark" style="box-shadow: -5px 5px 5px 0px rgba(143,143,143,0.73); height: 250px; margin-bottom: 20px;">
-                <div class="card-header" style="background-color: orange; color: white; text-align: center;">
+                <div class="card-header" style="background-color: #AFDCF6; color: #000; text-align: center;">
                     Data Kehadiran
                 </div>
                 <div style="margin-top: 50px; text-align: center; font-size: 2.5em;">

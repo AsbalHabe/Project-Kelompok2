@@ -74,10 +74,17 @@ class PenggajianModel extends CI_Model
         return false;
     }
 
-    public function get_keyword($keyword){
+    public function get_keyword($keyword)
+    {
         $this->db->select('*');
         $this->db->from('data_pegawai');
-        $this->db->like('nama_pegawai',$keyword);
+        $this->db->like('nama_pegawai', $keyword);
         return $this->db->get()->result();
+    }
+
+    public function detail_data($nik = NULL)
+    {
+        $query = $this->db->get_where('data_pegawai', array('nik' => $nik))->row();
+        return $query;
     }
 }

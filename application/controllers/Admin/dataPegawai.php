@@ -7,12 +7,12 @@ class DataPegawai extends CI_Controller
     {
         $data['title'] = "Data Pegawai";
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-        $per_page = 3;
+        $per_page = 5;
 
         $total_rows = $this->PenggajianModel->countData('data_pegawai');
         $total_pages = ceil($total_rows / $per_page);
 
-        $current_page = $this->input->get('page') ? $this->input->get('page') : 1;
+        $current_page = $this->input->get('page') ? $this->input->get('page') : 0;
         $start_index = ($current_page - 1) * $per_page;
 
         $data['pegawai'] = $this->PenggajianModel->get_data_pagination('data_pegawai', $per_page, $start_index)->result();
@@ -239,6 +239,20 @@ class DataPegawai extends CI_Controller
         $this->load->view('template_admin/header_admin', $data);
         $this->load->view('template_admin/sidebar_admin');
         $this->load->view('admin/dataPegawai', $data);
+        $this->load->view('template_admin/footer_admin');
+    }
+
+    public function detailData($id)
+    {
+        $this->load->model('PenggajianModel');
+        $detail = $this->PenggajianModel->detail_data($id);
+        $data['detail'] = $detail;
+
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['title'] = " Detail Data Pegawai";
+        $this->load->view('template_admin/header_admin', $data);
+        $this->load->view('template_admin/sidebar_admin');
+        $this->load->view('admin/detailPegawai', $data);
         $this->load->view('template_admin/footer_admin');
     }
 }

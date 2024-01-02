@@ -94,13 +94,7 @@
 
             <hr class="sidebar-divider my-0">
 
-            <li class="nav-item">
-                <a class="nav-link" href="<?php echo base_url('user/ubahPassword') ?>">
-                    <i class="fas fa-fw fa-lock"></i>
-                    <span class="text-white">Ubah Password</span></a>
-            </li>
 
-            <hr class="sidebar-divider my-0">
 
             <li class="nav-item">
                 <a class="nav-link" href="<?php echo base_url('autentifikasi/logout') ?>" onclick="return confirm('Yakin logout?')">
