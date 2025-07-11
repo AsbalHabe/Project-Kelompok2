@@ -8,7 +8,7 @@
 
     <div class="card" style="width: 60%; margin-bottom: 100px">
         <div class="card-body">
-            <form method="post" action="<?php echo base_url('admin/dataJabatan/tambah_data_aksi') ?>">
+            <form method="post" action="<?php echo base_url('admin/dataJabatan/tambah_data_aksi')?>" enctype="multipart/form-data">
 
             <div class="form-group">
                 <label>Nama Jabatan</label>
@@ -20,6 +20,11 @@
                 <label>Gaji Pokok</label>
                 <input type="text" name="gaji_pokok" class="form-control">
                 <?php echo form_error('gaji_pokok','<div class="text-small text-danger"></div>') ?>
+            </div>
+            <div class="form-group">
+                <label>foto</label>
+                <input type="file" name="foto" class="form-control">
+                <?php echo form_error('foto','<div class="text-small text-danger"></div>') ?>
             </div>
 
             <div class="form-group">

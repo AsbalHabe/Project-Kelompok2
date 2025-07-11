@@ -35,12 +35,33 @@ class DataJabatan extends CI_Controller
             $gaji_pokok     = $this->input->post('gaji_pokok');
             $tj_transport   = $this->input->post('tj_transport');
             $uang_makan     = $this->input->post('uang_makan');
+            $foto = $_FILES['foto']['name'];
+
+            if ($foto) {
+                $config['upload_path'] = './assets/foto';
+                $config['allowed_types'] = 'jpg|jpeg|png|tiff';
+                $this->load->library('upload', $config);
+
+                if (!$this->upload->do_upload('foto')) {
+                    $this->session->set_flashdata('pesan', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong>Gagal mengupload foto!</strong> Silakan coba lagi.
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>');
+                    redirect('admin/dataPegawai');
+                    return;
+                } else {
+                    $foto = $this->upload->data('file_name');
+                }
+            }
 
             $data = array(
                 'nama_jabatan'  => $nama_jabatan,
                 'gaji_pokok'    => $gaji_pokok,
                 'tj_transport'  => $tj_transport,
                 'uang_makan'    => $uang_makan,
+                'foto'           => $foto,
             );
 
             $this->PenggajianModel->insert_data($data, 'data_jabatan');
