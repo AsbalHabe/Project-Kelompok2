@@ -7,12 +7,19 @@ class DataPegawai extends CI_Controller
     {
         $data['title'] = "Data Pegawai";
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-        $per_page = 5;
+        $per_page = 5; // Jumlah data per halaman
 
         $total_rows = $this->PenggajianModel->countData('data_pegawai');
         $total_pages = ceil($total_rows / $per_page);
 
-        $current_page = $this->input->get('page') ? $this->input->get('page') : 0;
+        // Perbaikan di sini: Pastikan current_page tidak pernah 0 dan start_index tidak pernah negatif
+        $current_page = $this->input->get('page') ? (int)$this->input->get('page') : 1; 
+        
+        // Pastikan current_page tidak kurang dari 1
+        if ($current_page < 1) {
+            $current_page = 1;
+        }
+
         $start_index = ($current_page - 1) * $per_page;
 
         $data['pegawai'] = $this->PenggajianModel->get_data_pagination('data_pegawai', $per_page, $start_index)->result();
@@ -184,11 +191,11 @@ class DataPegawai extends CI_Controller
 
             $this->PenggajianModel->update_data('data_pegawai', $data, $where);
             $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-dismissible fade show" role="alert">
-            <strong>Data berhasil diupdate</strong>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>');
+                <strong>Data berhasil diupdate</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>');
             redirect('admin/dataPegawai');
         }
     }
